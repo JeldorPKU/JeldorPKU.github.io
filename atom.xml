@@ -4,9 +4,9 @@
   
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://yoursite.com/"/>
+  <link href="http://jeldorpku.github.io/"/>
   <updated>2016-09-14T07:23:54.000Z</updated>
-  <id>http://yoursite.com/</id>
+  <id>http://jeldorpku.github.io/</id>
   
   <author>
     <name>Jeldor</name>
@@ -17,8 +17,8 @@
   
   <entry>
     <title>天工开物</title>
-    <link href="http://yoursite.com/2016/09/14/%E5%A4%A9%E5%B7%A5%E5%BC%80%E7%89%A9/"/>
-    <id>http://yoursite.com/2016/09/14/天工开物/</id>
+    <link href="http://jeldorpku.github.io/2016/09/14/%E5%A4%A9%E5%B7%A5%E5%BC%80%E7%89%A9/"/>
+    <id>http://jeldorpku.github.io/2016/09/14/天工开物/</id>
     <published>2016-09-14T00:25:46.000Z</published>
     <updated>2016-09-14T07:23:54.000Z</updated>
     
@@ -39,7 +39,7 @@
 <p>最需要理解的一个地方在于，<strong>我们在本地管理的那个文件夹只是一个<em>内核</em></strong>。我们写完了新的文章之后，通过 <code>hexo generate</code> 才使这个<strong>内核</strong>成为成品的博客内容。git 真正进行版本控制的是这些成品。只要运行 <code>hexo deploy</code> ，Hexo 就会自动向你设定的 repo 进行 commit。千万不要直接在</p>
 <p>但是这样会出现一个问题，就是你自己的<strong>内核</strong>没有被 git 控制，一旦换一台电脑这个内核就丢了，所以应该还需要一个方法来管理内核。这个东西有人已经做到了，我以后再来折腾，准备参考<a href="http://crazymilk.github.io/2015/12/28/GitHub-Pages-Hexo搭建博客/" target="_blank" rel="external">GitHub Pages + Hexo搭建博客</a>。</p>
 <h4 id="主题的选择"><a href="#主题的选择" class="headerlink" title="主题的选择"></a>主题的选择</h4><p>在知乎上看到了<a href="https://www.zhihu.com/question/24422335" target="_blank" rel="external">家顺张在“有哪些好看的 Hexo 主题？”下的回答</a>，于是挑选了 star 数量第一的 <a href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="external">NexT</a>，于是找到了它的<a href="http://theme-next.iissnan.com" target="_blank" rel="external">配置文档</a>来进行了一番研究，配置成了现在这个样子。非常简洁大方，确实好看。后来折腾了一番之后发现李笑来老师用的也是这个主题，但是有更多的功能（比如将博文收起），准备等有空了继续折腾。</p>
-<h2 id="接下来的事"><a href="#接下来的事" class="headerlink" title="接下来的事"></a>接下来的事</h2><p>Hexo 支持标签和分类，同时还可以自己新开一些页面，感觉还是需要多思考一下。初步的想法是先把 <a href="https://jeldorpku.github.io/about/" target="_blank" rel="external">关于</a> 这个页面做起来，弄成类似简历的样子，附上一些个人介绍，这样以后投简历也不会缺素材了。至于 tags 和 categories，就等文章稍微多一些了再来仔细想想怎么分吧。</p>
+<h2 id="接下来的事"><a href="#接下来的事" class="headerlink" title="接下来的事"></a>接下来的事</h2><p>Hexo 支持标签和分类，同时还可以自己新开一些页面，感觉还是需要多思考一下。初步的想法是先把 <a href="https://jeldorpku.github.io/about/">关于</a> 这个页面做起来，弄成类似简历的样子，附上一些个人介绍，这样以后投简历也不会缺素材了。至于 tags 和 categories，就等文章稍微多一些了再来仔细想想怎么分吧。</p>
 <p>另外我也是刚刚开始用 Markdown 写作，还是有挺多不熟练的地方，这个技能也慢慢锻炼吧。</p>
 <p>阅读和写作都是好习惯。好好读书，好好整理分享，希望这个博客能一直写下去。</p>
 <hr>
@@ -56,16 +56,16 @@
     </summary>
     
     
-      <category term="hexo" scheme="http://yoursite.com/tags/hexo/"/>
+      <category term="hexo" scheme="http://jeldorpku.github.io/tags/hexo/"/>
     
-      <category term="thoughts" scheme="http://yoursite.com/tags/thoughts/"/>
+      <category term="thoughts" scheme="http://jeldorpku.github.io/tags/thoughts/"/>
     
   </entry>
   
   <entry>
     <title>Happy 256</title>
-    <link href="http://yoursite.com/2016/09/14/happy-256/"/>
-    <id>http://yoursite.com/2016/09/14/happy-256/</id>
+    <link href="http://jeldorpku.github.io/2016/09/14/happy-256/"/>
+    <id>http://jeldorpku.github.io/2016/09/14/happy-256/</id>
     <published>2016-09-13T16:00:00.000Z</published>
     <updated>2016-09-14T07:28:08.000Z</updated>
     
@@ -76,7 +76,7 @@
 <a id="more"></a>
 <h3 id="这是一封信"><a href="#这是一封信" class="headerlink" title="这是一封信"></a>这是一封信</h3><p>亲爱的天一：</p>
 <p>昨天是程序员节，2016年的第256天。今天就到了咱们256天的纪念日啦。你说你的微博没什么人关注，就用来记日记，你看现在我也找了个可以写类似日记的地方啦。</p>
-<p>还记得在128天的时候，我给你做了一个 <a href="https://minecraft.net" target="_blank" rel="external">Minecraft</a> 的视频。当时还非常有信心地觉得你会非常喜欢这样的方式，折腾了好久把自己弄得跟网红一样做了个直播，还同时学习了好多新的技术来完成那一次视频。现在我又折腾出了这个新玩意，利用 Github Pages 和 <a href="https://hexo.io" target="_blank" rel="external">Hexo</a> 来做了一个静态的博客。前面的那个 <a href="https://jeldorpku.github.io/2016/09/08/hello-world/" target="_blank" rel="external">Hello World</a> 是 <a href="https://hexo.io" target="_blank" rel="external">Hexo</a> 自己生成的第0篇博文，那就让这篇256天的纪念成为第1篇吧！</p>
+<p>还记得在128天的时候，我给你做了一个 <a href="https://minecraft.net" target="_blank" rel="external">Minecraft</a> 的视频。当时还非常有信心地觉得你会非常喜欢这样的方式，折腾了好久把自己弄得跟网红一样做了个直播，还同时学习了好多新的技术来完成那一次视频。现在我又折腾出了这个新玩意，利用 Github Pages 和 <a href="https://hexo.io" target="_blank" rel="external">Hexo</a> 来做了一个静态的博客。前面的那个 <a href="https://jeldorpku.github.io/2016/09/08/hello-world/">Hello World</a> 是 <a href="https://hexo.io" target="_blank" rel="external">Hexo</a> 自己生成的第0篇博文，那就让这篇256天的纪念成为第1篇吧！</p>
 <p><img src="http://odg8pkcmg.bkt.clouddn.com/hiking.jpg" alt="Hiking"></p>
 <p>过去的128天里，咱们携手走过了难忘的旅行。罗马、佛罗伦萨、米兰、威尼斯，还有瑞士的各种地方，这些我从来没有想过会到达的角落，都因为你的出现而成为了我宝贵的经历。与你相伴而行的两个星期真的如梦一般，让我真的好想再有机会和你一起去游历、去探索这个世界。最回味的还是苏黎世的意面，那是我们第一次一起下厨，虽然很简单，但是我对未来的生活充满了期待。</p>
 <p>这么多天，我也明白了自己的好多不足，未来一定能做得更好！以前读池建强大大的 MacTalk，里面写到的一句话我留在了这个博客的签名档里：「但行好事，莫问前程」。回到生活里，那就是我现在需要在自己身上积累更多的东西，这样三年以后才能有好的出路。认真做手边的每一件事，无论轻重，只要方向是对的，就一定会有好的结果。</p>
@@ -102,17 +102,17 @@
     
     </summary>
     
-      <category term="private" scheme="http://yoursite.com/categories/private/"/>
+      <category term="private" scheme="http://jeldorpku.github.io/categories/private/"/>
     
     
-      <category term="tianyi" scheme="http://yoursite.com/tags/tianyi/"/>
+      <category term="tianyi" scheme="http://jeldorpku.github.io/tags/tianyi/"/>
     
   </entry>
   
   <entry>
     <title>Hello World</title>
-    <link href="http://yoursite.com/2016/09/08/hello-world/"/>
-    <id>http://yoursite.com/2016/09/08/hello-world/</id>
+    <link href="http://jeldorpku.github.io/2016/09/08/hello-world/"/>
+    <id>http://jeldorpku.github.io/2016/09/08/hello-world/</id>
     <published>2016-09-08T07:56:05.000Z</published>
     <updated>2016-09-14T09:00:26.000Z</updated>
     
