@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://jeldorpku.github.io/"/>
-  <updated>2016-09-16T11:43:08.000Z</updated>
+  <updated>2016-09-18T07:13:41.000Z</updated>
   <id>http://jeldorpku.github.io/</id>
   
   <author>
@@ -14,6 +14,65 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>如何拍一张能看的月亮</title>
+    <link href="http://jeldorpku.github.io/2016/09/18/How-to-shoot-the-moon/"/>
+    <id>http://jeldorpku.github.io/2016/09/18/How-to-shoot-the-moon/</id>
+    <published>2016-09-18T05:32:04.000Z</published>
+    <updated>2016-09-18T07:13:41.000Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote>
+<p>这个中秋终于拍到一个能看的月亮了。</p>
+</blockquote>
+<p><img src="http://odg8pkcmg.bkt.clouddn.com/moon-small.jpg" alt="Moon"></p>
+<a id="more"></a>
+<p>蔡女士有一台单反相机，Canon EOS 70D。尽管有器材，但一直以来我都为我自己无法拍出好看的照片而非常苦恼。这与我缺少练习有非常大的关系。趁着这个中秋，各种摄影的公众号都开始推送“如何拍出好看的月亮”一类的文章，于是我也学习了一把。上面的那张图就是我最终的成品了，虽然非常一般但是也算是符合题目中<strong>能看</strong>的标准了。</p>
+<h3 id="前期准备"><a href="#前期准备" class="headerlink" title="前期准备"></a>前期准备</h3><p>不久以前看到了一篇文章，叫做 <a href="https://zhuanlan.zhihu.com/p/22325410" target="_blank" rel="external">为什么你的单反不如我的手机？——浅谈旅行摄影中时间地点季节的规划(1)</a> 。其中有一句话让我记忆非常深刻，是这样说的：</p>
+<blockquote><p>用心去旅行，用脑子去拍照。</p>
+<footer><strong>@木西AlexanDENG</strong><cite><a href="https://zhuanlan.zhihu.com/p/22325410" target="_blank" rel="external">zhuanlan.zhihu.com/p/22325410</a></cite></footer></blockquote>
+<p>看了那篇文章之后才真是觉得以自己现在的用心程度之低，完全轮不到拼技术和天分。以前我除了中秋几乎从来不拍月亮，但是每到中秋拍出来的效果都非常差劲。比如这样的：</p>
+<p><img src="http://odg8pkcmg.bkt.clouddn.com/bad-moon.JPG" alt="Bad moon"></p>
+<p>还有这样的：</p>
+<p><img src="http://odg8pkcmg.bkt.clouddn.com/bad-moon-2.JPG" alt="Another Bad Moon"></p>
+<p>前者是2014年中秋在深圳家里用卡片机拍的，后者是今年中秋在博雅塔下用iPhone 6拍的（当时没带相机），都没有修过。简单来说就是<strong>惨不忍睹</strong>。于是想到之前看过的一些公号的内容，中秋之夜我回到寝室，拿起相机就走到了阳台上。</p>
+<h3 id="端起相机"><a href="#端起相机" class="headerlink" title="端起相机"></a>端起相机</h3><p>我在微信公众号 AIRPHOTO (airphoto111) 的 <a href="http://mp.weixin.qq.com/s?__biz=MzAxMTkyMjA4Mg==&amp;mid=2247487710&amp;idx=1&amp;sn=c739ee741bb5cc1fd8e7f1decec56c04&amp;scene=0#wechat_redirect" target="_blank" rel="external">一篇文章</a> 里面看到了一组“很靠谱”的参数：</p>
+<ul>
+<li>快门：1/500 秒；</li>
+<li>光圈：F8</li>
+<li>ISO：100</li>
+</ul>
+<p>文章对此的说明是：</p>
+<blockquote>
+<p>拍出来可能有点暗，你后期提亮就好！这个参数是为了把月球上的环形山拍清楚！而且这个曝光时间，手持拍摄也是没问题的！记得打开防抖功能哦！</p>
+</blockquote>
+<p>于是我兴奋地调成了 M 模式，调好了参数，把焦距拉到最大（其实也就135mm，而且半画幅的相机最后实际焦距只有116mm），对准了月亮，按了几张。可是我在相机上预览照片的时候还以为显示屏坏了，全是黑的什么也没有啊。我想一定是传说中的<strong>有点暗</strong>，只要我用 ACR 提亮就行了。于是拔出 SD 卡插上电脑，开始校色。可是在我点了自动调整再看到月亮的时候我的下巴差点掉到地上。</p>
+<p><img src="http://odg8pkcmg.bkt.clouddn.com/ACR-1.png" alt="ACR"></p>
+<p>一定是我打开方式不对。文章的作者和上面引用的那篇一样都是木西老师，里面的月亮拍得真好看。大概是我有些东西没有弄对吧，还是自己琢磨一下。</p>
+<p>想了想，这应该是白平衡不对。我觉得可能是那片天空被腾讯新浪的大楼霓虹灯给照亮了，所以把照片亮度提上来之后那些霓虹灯的光也进来了。如果是长焦的镜头放得更大或许就能避免这一点。然而我又没有高级的器材，也没有办法慢慢琢磨怎么调，还是自己发挥一下吧。于是依然在 M 档，调整了快门和光圈，把 ISO 提上来了一些，变着参数拍了几张，就有了下面这张照片。好像有点样子了哈。</p>
+<p><img src="http://odg8pkcmg.bkt.clouddn.com/raw-moon.png" alt="Raw moon"></p>
+<p>放进 ACR 自动校色再自己调整了一下之后大概是下面这个样子。</p>
+<p><img src="http://odg8pkcmg.bkt.clouddn.com/moon-in-acr.png" alt="Moon in ACR"></p>
+<p>这样的照片就比较让我满意了。至少现在拍出来的月亮不再是一个白色的亮点了。上面的环形山虽然没有说清晰可见，但是还是有了很大的进步。我把相片放进 Photoshop CS6 裁了一下，让月亮大一些，就成了文章开头的那一张成品。给蔡女士看了之后她非常满意，还专门发到了朋友圈。我真是无比自豪呀。</p>
+<h3 id="总结与后续"><a href="#总结与后续" class="headerlink" title="总结与后续"></a>总结与后续</h3><p>当时拍的时候由于怕噪点，ISO 没有敢开特别高。后来和蔡女士交流了一下，也看了一些其他的文章，都说 ISO 再高一点应该会效果更好。现在相机的技术，ISO 开到3200甚至6400都不会有特别多噪点。我一想，十五的月亮十六圆，八月十六晚上再出来拍不就是了。反正除了初一附近的几天，天上天天都有月亮。算好了时间和机位出来拍一定可以拍好的。</p>
+<p>2016年9月16日，农历八月十六。傍晚我专门回到宿舍拿出了相机，准备到教学楼顶上拍月亮。月亮如果要显得大的话必须要有前景，最好的前景大概就是建筑物了。所以一定要在月亮还没有升高之前就出来拍。我想好了之后晚上七点多就爬到了理教顶上。</p>
+<p>东边，视线被理科二号楼挡得死死的。月亮在哪都不知道。终于明白了，有些事情光想想是不行的。该算的要算，该踩点要踩点，实践是检验真理的唯一标准。遂弃。</p>
+<p>不过总结起来这次拍摄还有有一点成效的。在拍摄之前做功课的时候看到了 <a href="https://500px.com" target="_blank" rel="external">500PX</a> 这个摄影交流的网站，觉得非常培养审美，于是注册了一个帐号，在上面到处逛逛，看看别人拍的好照片都是啥样的。今天我把这张月亮作为我的处女作传了上去，竟然还获得了几个赞，瞬间对摄影有了莫大的信心。<a href="https://500px.com" target="_blank" rel="external">500PX</a> 的免费用户每周可以上传20张照片，对于我这样的入门者已经是绰绰有余了。如果今后每1–2天就能有一张照片传到上面去就最好了。这是 <a href="https://500px.com/jeldor" target="_blank" rel="external">我的 500PX 主页</a> ，希望能有进步！</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;这个中秋终于拍到一个能看的月亮了。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img src=&quot;http://odg8pkcmg.bkt.clouddn.com/moon-small.jpg&quot; alt=&quot;Moon&quot;&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="photography" scheme="http://jeldorpku.github.io/tags/photography/"/>
+    
+  </entry>
   
   <entry>
     <title>天工开物</title>
