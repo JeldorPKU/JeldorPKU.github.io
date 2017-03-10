@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://jeldorpku.github.io/"/>
-  <updated>2017-03-09T15:52:15.000Z</updated>
+  <updated>2017-03-10T01:18:03.000Z</updated>
   <id>http://jeldorpku.github.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://jeldorpku.github.io/2017/03/09/CSAPP-Notes-2/"/>
     <id>http://jeldorpku.github.io/2017/03/09/CSAPP-Notes-2/</id>
     <published>2017-03-09T00:57:49.000Z</published>
-    <updated>2017-03-09T15:52:15.000Z</updated>
+    <updated>2017-03-10T01:18:03.000Z</updated>
     
     <content type="html"><![CDATA[<h3 id="信息存储"><a href="#信息存储" class="headerlink" title="信息存储"></a>信息存储</h3><h4 id="十六进制与字节顺序"><a href="#十六进制与字节顺序" class="headerlink" title="十六进制与字节顺序"></a>十六进制与字节顺序</h4><p>在计算机中，信息的存储均为<strong>二进制位(bit)</strong>的形式。每八个二进制位就形成一个<strong>字节(byte)</strong>。由于二进制位的表示将会把数字拉得很长，通常我们会用十六进制来表示。每个十六进制位都恰好表示四个二进制位，高位补0。</p>
 <p>内存中的空间是以字节为单位的。而一个字节只有8位，可以存储的数据非常少。因此跨字节的存储就成为了必需。这也就意味着对于内存中的对象，我们需要两个规则：</p>
@@ -64,7 +64,7 @@
 <p>若 <code>length == 0</code> ，那么在 <code>for</code> 循环中，<code>length - 1</code> 就会返回无符号数的最大值 $2^{32} - 1$，从而在访问 <code>a[i]</code> 时出现下标越界的状况。将 <code>i &lt;= length - 1</code> 改为 <code>i &lt; length</code> 即可解决这个问题。同样的道理，在无符号数的运算中，<code>x - y &gt; 0</code> 和 <code>x &gt; y</code> 可能会产生不同的结果。</p>
 <h4 id="溢出"><a href="#溢出" class="headerlink" title="溢出"></a>溢出</h4><p>由于存储的空间有限，一旦运算结果超出了可存储数的范围，就是出现<strong>溢出</strong>。这个时候，计算机会保留运算结果中较低的 $w$ 位。</p>
 <h5 id="加法"><a href="#加法" class="headerlink" title="加法"></a>加法</h5><p>对无符号数而言，$0\leq x, y \leq 2^w - 1$ ，因此 $0\leq x + y\leq 2^{w+1}-2$ 。令 $z = x + y$，当 $0\leq z \leq 2^w - 1$ 时，不会发生溢出。但是当 $2^w\leq z\leq 2^{w+1} - 2$ 时，最高位超出了 $w$ 位的表示范围，于是得到的结果 $z’ = z\mod 2^w$。 </p>
-<p>对有符号数而言，$-2^{w-1}\leq x,y\leq 2^{w-1} - 1$，因此 $-2^w\leq x+y\leq 2^w - 2$。令 $z=x+y$，当 $2^{w-1}\leq z\leq 2^{w-1} - 1$ 时不会发生溢出。当 $2^{w-1}\leq z\leq 2^w-2$，最高位出现一个权重为 $2^w$ 的进位会被舍去，于是 $z’=z-2^w&lt;0$，称为正溢出（得到负数）。当 $-2^w\leq z\leq 2^{w-1}$，最高位出现退位，$z’=z+2^w&gt;0$，称为负溢出（得到正数）。</p>
+<p>对有符号数而言，$-2^{w-1}\leq x,y\leq 2^{w-1} - 1​$，因此 $-2^w\leq x+y\leq 2^w - 2​$。令 $z=x+y​$，当 $-2^{w-1}\leq z\leq 2^{w-1} - 1​$ 时不会发生溢出。当 $2^{w-1}\leq z\leq 2^w-2​$，最高位出现一个权重为 $2^w​$ 的进位会被舍去，于是 $z’=z-2^w&lt;0​$，称为正溢出（得到负数）。当 $-2^w\leq z\leq 2^{w-1}​$，最高位出现退位，$z’=z+2^w&gt;0​$，称为负溢出（得到正数）。</p>
 <h5 id="乘法"><a href="#乘法" class="headerlink" title="乘法"></a>乘法</h5><p>类似的，乘法也会出现对应的溢出。</p>
 <p>对两个无符号数 $x, y$，$0\leq x, y \leq 2^w - 1$。令 $z=x\cdot y$，则有 $0\leq z\leq 2^{2w} - 2^{w+1}+1$。然而一个无符号数 $z$ 若没有溢出，它应该满足 $0\leq z \leq 2^w-1$。在 $2^w\leq z\leq 2^{2w} - 2^{w+1}+1$ 的情况下都会出现溢出。此时将直接取低 $w$ 位。</p>
 <p>有符号数的乘法在位级水平上与无符号数完全相同。因此只要将 $x\cdot y$ 的二进制表示取低 $w$ 位作为补码解读，即可得到计算的结果。考虑表达式 <code>x * x</code>，在不溢出的情况下它应该是一个大于等于0的数。设 $z=x^2$，那么不溢出的范围应该是 $z &lt; 2^{31}$。因此只要 $x\geq 2^{15.5}\approx 46341$ 就会发生溢出。事实上，若 $x=2^{16}-1=65535$，则由以下代码可以得到一个小于0的值：</p>
