@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://jeldorpku.github.io/"/>
-  <updated>2017-03-10T01:24:56.000Z</updated>
+  <updated>2017-03-13T16:27:22.000Z</updated>
   <id>http://jeldorpku.github.io/</id>
   
   <author>
@@ -14,6 +14,299 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>CSAPP 习题（2）</title>
+    <link href="http://jeldorpku.github.io/2017/03/10/CSAPP-Exercise-2/"/>
+    <id>http://jeldorpku.github.io/2017/03/10/CSAPP-Exercise-2/</id>
+    <published>2017-03-10T03:03:32.000Z</published>
+    <updated>2017-03-13T16:27:22.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="重点练习"><a href="#重点练习" class="headerlink" title="重点练习"></a>重点练习</h1><h2 id="2-10"><a href="#2-10" class="headerlink" title="2.10"></a>2.10</h2><blockquote>
+<p>考虑如下代码：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&gt; <span class="function"><span class="keyword">void</span> <span class="title">inplace_swap</span><span class="params">(<span class="keyword">int</span> *x, <span class="keyword">int</span> *y)</span> </span>&#123;</div><div class="line">&gt;     *y = *x ^ *y;</div><div class="line">&gt;     *x = *x ^ *y;</div><div class="line">&gt;     *y = *x ^ *y;</div><div class="line">&gt; &#125;</div><div class="line">&gt;</div></pre></td></tr></table></figure>
+</blockquote>
+<p>&gt;</p>
+<blockquote>
+<p>已知 <code>a ^ a = 0</code>，求以上代码运行时每一步的情况。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">步骤</th>
+<th style="text-align:center"><code>*x</code></th>
+<th style="text-align:center"><code>*y</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">初始</td>
+<td style="text-align:center"><code>a</code></td>
+<td style="text-align:center"><code>b</code></td>
+</tr>
+<tr>
+<td style="text-align:center">第一步</td>
+<td style="text-align:center"><code>a</code></td>
+<td style="text-align:center"><code>a ^ b</code></td>
+</tr>
+<tr>
+<td style="text-align:center">第二步</td>
+<td style="text-align:center"><code>a ^ (a ^ b) = b</code></td>
+<td style="text-align:center"><code>a ^ b</code></td>
+</tr>
+<tr>
+<td style="text-align:center">第三步</td>
+<td style="text-align:center"><code>b</code></td>
+<td style="text-align:center"><code>b ^ (a ^ b) = a</code></td>
+</tr>
+</tbody>
+</table>
+<p>但这个函数在 $x = y$（注意不是 $a=b$ ）时，会出现原地交换的错误，被修改的内存将会被置0。因此如果使用这个方式交换两个数的值，一定要严防原地交换。</p>
+<h2 id="2-15"><a href="#2-15" class="headerlink" title="2.15"></a>2.15</h2><blockquote>
+<p>只使用位级和逻辑运算，编写一个 C 表达式，使它等价于 <code>x == y</code>。</p>
+</blockquote>
+<p>答案是 <code>!(x ^ y)</code>。在不能使用 <code>==</code> 运算符的时候可以用它代替。</p>
+<h2 id="2-21"><a href="#2-21" class="headerlink" title="2.21"></a>2.21</h2><blockquote>
+<p>假设在采用补码运算的 32 位机器上对以下表达式求值，填写下表，描述强制类型转换和关系运算的结果。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>表达式</th>
+<th>类型</th>
+<th>求值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>-2147483647-1 == 2147483648U</code></td>
+<td>无符号</td>
+<td>1</td>
+</tr>
+<tr>
+<td><code>-2147483647-1 &lt; 2147483647</code></td>
+<td>有符号</td>
+<td>1</td>
+</tr>
+<tr>
+<td><code>-2147483647-1U &lt; 2147483647</code></td>
+<td>无符号</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>-2147483647-1 &lt; -2147483647</code></td>
+<td>有符号</td>
+<td>1</td>
+</tr>
+<tr>
+<td><code>-2147483647-1U &lt; -2147483647</code></td>
+<td>无符号</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<p>在运算时，无符号类型比有符号类型的等级要高。只要两个操作数之中有一个是无符号数，C语言就会在运算之前把两个操作数都转换为无符号数，再进行运算。下面把以上五个式子的十六进制表达列出。若为有符号数，则同时将十进制表达列出。</p>
+<ul>
+<li><code>0x80000000 == 0x80000000</code></li>
+<li><code>0x80000000 &lt; 0x7FFFFFFF</code> ，<code>-2147483648 &lt; 2147483647</code></li>
+<li><code>0x80000000 &lt; 0x7FFFFFFF</code></li>
+<li><code>0x80000000 &lt; 0x80000001</code> ，<code>-2147483648 &lt; -2147483647</code></li>
+<li><code>0x80000000 &lt; 0x80000001</code></li>
+</ul>
+<h2 id="2-30、2-31、2-35、2-36"><a href="#2-30、2-31、2-35、2-36" class="headerlink" title="2.30、2.31、2.35、2.36"></a>2.30、2.31、2.35、2.36</h2><blockquote>
+<p>编写一个函数，检验两个有符号整数相加是否会溢出。</p>
+</blockquote>
+<p>补码加法的溢出有正溢出（得到负数）和负溢出（得到正数）两种。两种均不溢出才返回1，否则应该返回0。若 $x$  和 $y$ 不同号，那么一定不会溢出。因此只需要讨论 $xy&gt;0$ 的情况即可：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">tadd_ok</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>&#123;</div><div class="line">    <span class="keyword">int</span> neg_over = (x &lt; <span class="number">0</span> &amp;&amp; y &lt; <span class="number">0</span> &amp;&amp; x + y &gt; <span class="number">0</span>);</div><div class="line">    <span class="keyword">int</span> pos_over = (x &gt; <span class="number">0</span> &amp;&amp; y &gt; <span class="number">0</span> &amp;&amp; x + y &lt; <span class="number">0</span>);</div><div class="line">    <span class="keyword">return</span> !neg_over &amp;&amp; !pos_over;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>但是一定要注意的是，补码的运算对加法和减法是封闭的。所以用减法来检验加法是否溢出是没有作用的。</p>
+<p>不过对乘法则不是这样。补码的乘法是否溢出是可以用除法来检验的。示例如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">tmult_ok</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>&#123;</div><div class="line">    <span class="keyword">int</span> p = x * y;</div><div class="line">    <span class="keyword">return</span> !x || p / x == y;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>下面给出证明：</p>
+<p>首先，当 $x=0$ 时，这个函数是符合要求的。当 $x\neq 0$ 时，考虑 $w$ 位的数字 $x$ 和 $y$ 。记 $p$ 是 $x$ 和 $y$ 进行补码乘法的结果，那么一定存在整数 $t=0$ 或 $t=1$ 使得 $x\cdot y = p + t\cdot 2^w$ 。当 $p$ 的计算溢出时，$t=1$ 。由带余除法的基本原理，存在唯一整数对 $(q, r)$ ，使得 $p=qx+r$，其中 $0\leq r &lt; |x|$。下面证明 $q=y$ 是 $r=t=0$ 的充要条件。</p>
+<p>当 $q=y$ ，我们有 $x\cdot y-t\cdot 2^w = p = xy+r$。又 $r\geq 0, -t\cdot 2^w\leq 0$，故 $r=t=0$ 。当 $r=t=0$， $x\cdot y = p = q\cdot x$ ，故 $q=y$。因此 $q=y$ 是 $r=t=0$ 的充要条件。由于 $q$ 恰好是 <code>p / x</code> 的值，因此用除法来检验乘法是否溢出是有效的。</p>
+<p>这一方法也可以不用除法实现。只需用 $2w$ 位有符号类型来存储结果，并看它和截断至 $w$ 位之后是否相等即可。代码如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">tmult_ok</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>&#123;</div><div class="line">    <span class="keyword">int64_t</span> pll = (<span class="keyword">int64_t</span>) x * y;</div><div class="line">    <span class="keyword">return</span> pll == (<span class="keyword">int</span>) pll;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="家庭作业"><a href="#家庭作业" class="headerlink" title="家庭作业"></a>家庭作业</h1><h2 id="2-55–2-57"><a href="#2-55–2-57" class="headerlink" title="2.55–2.57"></a>2.55–2.57</h2><p>略。</p>
+<h2 id="2-58"><a href="#2-58" class="headerlink" title="2.58"></a>2.58</h2><p>本题需要编写一个函数 <code>is_little_endian</code>，返回机器是用小端法还是大端法。</p>
+<p>想法非常简单，只需要用1来检验即可，看第一个字节。如果第一个字节不是全0，那就是小端法，否则是大端法。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">is_little_endian</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">int</span> x = <span class="number">1</span>;</div><div class="line">    <span class="keyword">return</span> *((<span class="keyword">char</span> *) &amp;x);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="2-59"><a href="#2-59" class="headerlink" title="2.59"></a>2.59</h2><p>本题需要编写一个 C 表达式，生成一个字，由 <code>x</code> 的最低有效字节和 <code>y</code> 中剩下的字节组成。</p>
+<p>本质上是生成两个掩码，表达式是 <code>(x &amp; 0xFF) &amp; (y &amp; ~0xFF)</code> 。</p>
+<h2 id="2-60"><a href="#2-60" class="headerlink" title="2.60"></a>2.60</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">unsigned</span> <span class="title">replace_byte</span><span class="params">(<span class="keyword">unsigned</span> x, <span class="keyword">int</span> i, <span class="keyword">unsigned</span> <span class="keyword">char</span> b)</span> </span>&#123;</div><div class="line">    <span class="comment">// Replace x's i th byte with b</span></div><div class="line">    <span class="keyword">return</span> (x &lt;&lt; (i &lt;&lt; <span class="number">3</span>)) | ((<span class="keyword">int</span>) b &lt;&lt; (i &lt;&lt; <span class="number">3</span>));</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="2-61"><a href="#2-61" class="headerlink" title="2.61"></a>2.61</h2><ul>
+<li><code>x</code> 的每一位都等于1：<code>!~x</code>。</li>
+<li><code>x</code> 的每一位都等于0：<code>!x</code>。</li>
+<li><code>x</code> 的最低有效字节中的位都等于1：<code>!((x ^ 0xFF) &amp; 0xFF)</code> 。</li>
+<li><code>x</code> 的最高有效字节中的位都等于0：<code>!(x &amp; (0xFF &lt;&lt; ((sizeof(int) - 1) &lt;&lt; 3)))</code> 。</li>
+</ul>
+<h2 id="2-62"><a href="#2-62" class="headerlink" title="2.62"></a>2.62</h2><blockquote>
+<p>编写函数 <code>int_shifts_are_arithmetic()</code> ，在对 <code>int</code> 类型的数使用算术右移的机器上生成1，反之生成0。要求在任意字长的机器上都可以运行。</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">int_shifts_are_arithmetic</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">int</span> x = ~<span class="number">0</span>;</div><div class="line">    <span class="keyword">return</span> !(x ^ (x &gt;&gt; <span class="number">1</span>));</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="2-63"><a href="#2-63" class="headerlink" title="2.63"></a>2.63</h2><blockquote>
+<p>用函数 <code>srl()</code> 来用算术右移来完成逻辑右移。用函数 <code>sra()</code> 来用逻辑右移来完成算术右移。不能使用右移或除法。</p>
+</blockquote>
+<p>对 <code>srl()</code> 这个函数，本质是要将第 $w-1$ 位到 $w-k$ 位都刷成0（最右为第0位）。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">unsigned</span> <span class="title">srl</span><span class="params">(<span class="keyword">unsigned</span> x, <span class="keyword">int</span> k)</span> </span>&#123;</div><div class="line">    <span class="keyword">unsigned</span> xsra = (<span class="keyword">int</span>) x &gt;&gt; k;</div><div class="line">    <span class="comment">// Your code here.</span></div><div class="line">    <span class="keyword">int</span> w = <span class="keyword">sizeof</span>(<span class="keyword">int</span>) &lt;&lt; <span class="number">3</span>;</div><div class="line">    <span class="keyword">unsigned</span> mask = <span class="number">2</span> &lt;&lt; (w - k - <span class="number">1</span>) - <span class="number">1</span>; <span class="comment">// in case k == 0</span></div><div class="line">    <span class="keyword">return</span> xsra &amp; mask;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>对 <code>sra()</code> ，需要将第 $w-1$ 位到 $w-k$ 位都统一成第 $w - k - 1$ 位的值。那么我们首先取得第 $w-k-1$ 位的值，对其取反加1，即可得到最高的 $k$ 位。于是我们把原来的数 <code>xsrl</code> 分为左右两段来处理。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">unsigned</span> <span class="title">sra</span><span class="params">(<span class="keyword">unsigned</span> x, <span class="keyword">int</span> k)</span> </span>&#123;</div><div class="line">    <span class="keyword">int</span> xsrl = x &gt;&gt; k;</div><div class="line">    <span class="comment">// Your code here.</span></div><div class="line">    <span class="keyword">int</span> w = <span class="keyword">sizeof</span>(<span class="keyword">int</span>) &lt;&lt; <span class="number">3</span>;</div><div class="line">    <span class="keyword">unsigned</span> z = <span class="number">1</span> &lt;&lt; (w - k - <span class="number">1</span>);</div><div class="line">    <span class="keyword">unsigned</span> mask = z - <span class="number">1</span>;</div><div class="line">    <span class="keyword">unsigned</span> left = ~mask &amp; (~(z &amp; xsrl) + z);</div><div class="line">    <span class="keyword">unsigned</span> right = mask &amp; xsrl;</div><div class="line">    <span class="keyword">return</span> left | right;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="2-64"><a href="#2-64" class="headerlink" title="2.64"></a>2.64</h2><blockquote>
+<p>编写函数 <code>any_odd _one(x)</code> ，当 <code>x</code> 的二进制表示中的任一奇数位为1时返回1，否则返回0。假设 $w=32$ 。</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">any_odd_one</span><span class="params">(<span class="keyword">unsigned</span> x)</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> !!(x &amp; <span class="number">0x55555555</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="2-65"><a href="#2-65" class="headerlink" title="2.65"></a>2.65</h2><blockquote>
+<p>编写函数 <code>odd_ones(x)</code> ，当 <code>x</code> 的二进制表达含有奇数个1时返回1，否则返回零。设 $w=32$。<strong>代码中算术运算、位运算和逻辑运算最多只能包含12个。</strong></p>
+</blockquote>
+<p>看到这个题目，可以考虑异或运算来对消1。如果有偶数个1，它们会两两经过异或变成0，从而最终得到0。所以将 <code>x</code> 的第一位依次与其后一位异或，到最后如果为1就是奇数个1，反之为偶数个1。但是这样会需要15次异或操作，会超出题目所限制的12个。如此一来，我们就只能考虑用对半分治的方式。先将前16位和后16位对齐后异或，再取前8位和后8位对齐后异或，直到最后剩一位，就是我们要的答案。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">odd_ones</span><span class="params">(<span class="keyword">unsigned</span> x)</span> </span>&#123;</div><div class="line">    x ^= (x &gt;&gt; <span class="number">16</span>);</div><div class="line">    x ^= (x &gt;&gt; <span class="number">8</span>);</div><div class="line">    x ^= (x &gt;&gt; <span class="number">4</span>);</div><div class="line">    x ^= (x &gt;&gt; <span class="number">2</span>);</div><div class="line">    x ^= (x &gt;&gt; <span class="number">1</span>);</div><div class="line">    <span class="keyword">return</span> (x ^ <span class="number">1</span>) &amp; <span class="number">1</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="2-66"><a href="#2-66" class="headerlink" title="2.66"></a>2.66</h2><blockquote>
+<p>生成一个掩码，取 <code>x</code> 的最高非零位。假设 $w=32$ 。<strong>最多只能包含15个算术运算、位级运算和逻辑运算。</strong></p>
+</blockquote>
+<p>本题的想法是先将 <code>x</code> 最高非零位向右扩展到最低位，再右移1位与原数异或即可。注意由于当 $x=0$ 的时候要返回 $0$ ，所以不能直接加1而要用异或来解决。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">leftmost_one</span><span class="params">(<span class="keyword">unsigned</span> x)</span> </span>&#123;</div><div class="line">    x |= (x &gt;&gt; <span class="number">1</span>);</div><div class="line">    x |= (x &gt;&gt; <span class="number">2</span>);</div><div class="line">    x |= (x &gt;&gt; <span class="number">4</span>);</div><div class="line">    x |= (x &gt;&gt; <span class="number">8</span>);</div><div class="line">    x |= (x &gt;&gt; <span class="number">16</span>);</div><div class="line">    <span class="keyword">return</span> x ^ (x &gt;&gt; <span class="number">1</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="2-67"><a href="#2-67" class="headerlink" title="2.67"></a>2.67</h2><blockquote>
+<p>编写一个过程 <code>int_size_is_32()</code> ，当在一个 <code>int</code> 是32位的机器上运行时产生1，而其他情况则产生0。不允许使用 <code>sizeof</code> 运算符。下面是一个错误的尝试：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&gt; <span class="function"><span class="keyword">int</span> <span class="title">bad_int_size_is_32</span><span class="params">()</span> </span>&#123;</div><div class="line">&gt;     <span class="keyword">int</span> set_msb = <span class="number">1</span> &lt;&lt; <span class="number">31</span>;</div><div class="line">&gt;     <span class="keyword">int</span> beyond_msb = <span class="number">1</span> &lt;&lt; <span class="number">32</span>;</div><div class="line">&gt;     <span class="keyword">return</span> set_msb &amp;&amp; !beyond_msb;</div><div class="line">&gt; &#125;</div><div class="line">&gt;</div></pre></td></tr></table></figure>
+</blockquote>
+<p>&gt;</p>
+<blockquote>
+<p>请回答：</p>
+<ol>
+<li>这份代码在哪个方面没有遵守 C 语言标准？</li>
+<li>修改代码使得它在 <code>int</code> 至少为32位的任何机器上都能正确地运行。</li>
+<li>修改代码使得它在 <code>int</code> 至少为16位的任何机器上都能正确地运行。</li>
+</ol>
+</blockquote>
+<ol>
+<li><p>在第3行，左移运算的右值为32，在 <code>int</code> 为32位的机器上是不合法的，超过了左值的宽度。</p>
+</li>
+<li><p>将第3行修改为 <code>int beyond_msb = 2 &lt;&lt; 31;</code></p>
+</li>
+<li><p>若要支持至少16位的机器，那么左移的量最多为15。可以将第2、3行用如下代码替换：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span> a = <span class="number">1</span> &lt;&lt; <span class="number">15</span>;</div><div class="line">a &lt;&lt;= <span class="number">15</span>;</div><div class="line"><span class="keyword">int</span> set_msb = a &lt;&lt; <span class="number">1</span>;</div><div class="line"><span class="keyword">int</span> beyond_msb = a &lt;&lt; <span class="number">2</span>;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="2-68"><a href="#2-68" class="headerlink" title="2.68"></a>2.68</h2><blockquote>
+<p>编写一个函数，生成一个掩码，将最低 $n$ 位置为 1 。其中 $1\leq n\leq w$ 。注意 $n=w$ 的情况。</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">lower_one_mask</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> (<span class="number">2</span> &lt;&lt; (n - <span class="number">1</span>)) - <span class="number">1</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="2-69"><a href="#2-69" class="headerlink" title="2.69"></a>2.69</h2><blockquote>
+<p>写出一个具有以下原型的函数代码：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&gt; <span class="comment">/*</span></div><div class="line">&gt;  * Do rotating left shift. Assume 0 &lt;= n &lt;= w</div><div class="line">&gt;  * Examples when x = 0x12345678 and w = 32:</div><div class="line">&gt;  *    n=4 -&gt; 0x23456781, n=20 -&gt; 0x67812345</div><div class="line">&gt;  */</div><div class="line">&gt; <span class="function"><span class="keyword">unsigned</span> <span class="title">rotate_left</span><span class="params">(<span class="keyword">unsigned</span> x, <span class="keyword">int</span> n)</span></span>;</div><div class="line">&gt;</div></pre></td></tr></table></figure>
+</blockquote>
+<p>左移过程中，一部分位被舍去，一部分位被保留，因此我们考虑分成两部分来处理。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">unsigned</span> <span class="title">rotate_left</span><span class="params">(<span class="keyword">unsigned</span> x, <span class="keyword">int</span> n)</span> </span>&#123;</div><div class="line">    <span class="keyword">int</span> w = <span class="keyword">sizeof</span>(<span class="keyword">int</span>) &lt;&lt; <span class="number">3</span>;</div><div class="line">    <span class="keyword">unsigned</span> left = x &lt;&lt; n;</div><div class="line">    <span class="keyword">unsigned</span> right = (x &amp; ~((<span class="number">2</span> &lt;&lt; (w - n - <span class="number">1</span>)) - <span class="number">1</span>)) &gt;&gt; (w - n);</div><div class="line">    <span class="keyword">return</span> left | right;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这里要特别注意第4行，需要处理好 $n=0$ 的情况，因此使用了 <code>2 &lt;&lt; (w - n - 1)</code> 。这一行的意思是取出 <code>x</code> 的前 <code>n</code> 位然后右移 <code>w-n</code> 位，得到右边的部分。</p>
+<h2 id="2-70"><a href="#2-70" class="headerlink" title="2.70"></a>2.70</h2><blockquote>
+<p>编写一个函数，当 $x$ 可以被表示为 $n$ 位补码时返回1，否则返回0。其中 $1\leq n\leq w$ 。</p>
+</blockquote>
+<p>本题其实是要看 $x$ 是否在 $-2^{n-1}$ ～ $2^{n-1} -1$ 这个闭区间内。如果 $x$ 满足这个条件，那么第 $n-1$ 位就是符号位，它以上的 $w-n$ 位都与第 $n-1$ 位相同。所以考虑将 $x$ 右移 $n-1$ 位，如果得到的数是全1或者全0，那么就说明它可以被 $n$ 位补码表示出来。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">fits_bits</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> n)</span> </span>&#123;</div><div class="line">    x &gt;&gt;= n - <span class="number">1</span>;</div><div class="line">    <span class="keyword">return</span> (!x) || (!~x);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="2-71"><a href="#2-71" class="headerlink" title="2.71"></a>2.71</h2><blockquote>
+<p>题目太长不写了。</p>
+</blockquote>
+<ol>
+<li>题目中给出的代码返回的是 <code>unsigned</code> 类型，右移时使用了逻辑右移，不能返回题目要求的 <code>int</code> 类型。</li>
+<li>重写如下：</li>
+</ol>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">xbyte</span><span class="params">(<span class="keyword">packed_t</span> word, <span class="keyword">int</span> bytenum)</span> </span>&#123;</div><div class="line">    <span class="keyword">int</span> temp = word &lt;&lt; ((<span class="number">3</span> - bytenum) &lt;&lt; <span class="number">3</span>);</div><div class="line">    <span class="keyword">return</span> temp &gt;&gt; <span class="number">24</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="2-72"><a href="#2-72" class="headerlink" title="2.72"></a>2.72</h2><ol>
+<li>给出的代码中采用 <code>maxbytes - sizeof(val) &gt;= 0</code> 来判断是否进行 <code>memcpy()</code> 函数。本章<a href="https://jeldorpku.github.io">笔记</a>中我们也提到，无符号类型比有符号类型级别高，两种类型进行运算时会转化成 <code>unsigned</code> 来进行。<code>sizeof()</code> 函数返回的类型是 <code>size_t</code> ，而这一标识符在 <code>&lt;stdio.h&gt;</code> 中被定义为 <code>unsigned</code> ，因此即使 <code>maxbytes &lt; sizeof(val)</code> ，它们相减都会得到一个无符号数，而它一定是非负的。</li>
+<li>将  <code>maxbytes - sizeof(val) &gt;= 0</code> 替换为 <code>maxbytes &gt; 0 &amp;&amp; maxbytes &gt;= sizeof(val)</code> 。注意前面的那个条件是必需的，否则若 <code>maxbytes</code> 为负数，在比较时也会被转化为正数，后面的逻辑运算可能也会出现问题。</li>
+</ol>
+<h2 id="2-73"><a href="#2-73" class="headerlink" title="2.73"></a>2.73</h2><blockquote>
+<p>实现饱和加法，将两个 <code>int</code> 类型的数 $x$ 和 $y$ 相加，若正溢出返回 <code>INT_MAX</code> ，负溢出返回 <code>INT_MIN</code> ，无溢出返回其和。</p>
+</blockquote>
+<p>由于本章习题限制不能使用条件语句，我们只能用位运算来解决这些问题。32位 <code>int</code> 表达中，<code>INT_MAX</code> 的值为 <code>0x7FFFFFFF</code> ，<code>INT_MIN</code> 的值为 <code>0x80000000</code> 。考虑以下几种情况：</p>
+<ul>
+<li>$x, y$ 异号，则一定不会发生溢出。</li>
+<li>$x,y&gt;0$，此时可能发生正溢出。</li>
+<li>$x,y&lt;0$ ，此时可能发生负溢出。</li>
+</ul>
+<p>因此我们可以提取 $x,y,x+y$ 三者的符号位（用右移运算），来看是否会发生溢出情况。由于右移是算术右移，直接右移 $w-1$ 位就可以得到全1或全0的一个数，表示符号。直接用位运算来表示是否溢出，则这些标记量也是全1或全0的数，且三个标记量中仅有一个是全1，剩下两个都是全0。因此可以考虑将三个标记量与其分别对应的结果进行 <code>&amp;</code> 运算，再一起进行 <code>|</code> 运算，这样可以不用分支结构来完成这个任务。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">saturate_add</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>&#123;</div><div class="line">    <span class="keyword">int</span> sum = x + y;</div><div class="line">    <span class="keyword">int</span> t = sum;</div><div class="line">    <span class="keyword">int</span> w = <span class="keyword">sizeof</span>(<span class="keyword">int</span>) &lt;&lt; <span class="number">3</span>;</div><div class="line">    x &gt;&gt;= w - <span class="number">1</span>;</div><div class="line">    y &gt;&gt;= w - <span class="number">1</span>;</div><div class="line">    t &gt;&gt;= w - <span class="number">1</span>;</div><div class="line">    <span class="keyword">int</span> pos_ovf = ~x &amp; ~y &amp; t; <span class="comment">// x 和 y 为正而 t 为负</span></div><div class="line">    <span class="keyword">int</span> neg_ovf = x &amp; y &amp; ~t; <span class="comment">// x 和 y 为负而 t 为正</span></div><div class="line">    <span class="keyword">int</span> not_ovf = ~(pos_ovf | neg_ovf); <span class="comment">// 既未正溢出也未负溢出</span></div><div class="line">    <span class="keyword">return</span> (pos_ovf &amp; INT_MAX) | (not_ovf &amp; sum) | (neg_ovf &amp; INT_MIN); </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="2-74"><a href="#2-74" class="headerlink" title="2.74"></a>2.74</h2><blockquote>
+<p>编写函数 <code>tsub_ok(int x, int y)</code> 来检测 $x-y$ 是否溢出。</p>
+</blockquote>
+<p>设 $t=x-y$ ，并将 $t$ 转换为 $w$ 位补码，则有以下结论：</p>
+<ul>
+<li>$xy \geq 0$ ，即 $x$ 和 $y$ 同号时，一定不发生溢出。</li>
+<li>$x&gt;0,y&lt;0$ ，此时可能发生正溢出，结果 $t&lt;0$ 。</li>
+<li>$x<0,y>0$ ，此时可能发生负溢出，结果 $t&gt;0$ 。</0,y></li>
+</ul>
+<p>综上，溢出的充要条件是 $yt&gt;0,xy&lt;0$ 。继续沿用上一题的想法，写出如下函数：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">tsub_ok</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>&#123;</div><div class="line">    <span class="keyword">int</span> w = <span class="keyword">sizeof</span>(<span class="keyword">int</span>) &lt;&lt; <span class="number">3</span>;</div><div class="line">    <span class="keyword">int</span> t = x - y;</div><div class="line">    x &gt;&gt;= w - <span class="number">1</span>;</div><div class="line">    y &gt;&gt;= w - <span class="number">1</span>;</div><div class="line">    t &gt;&gt;= w - <span class="number">1</span>;</div><div class="line">    <span class="keyword">return</span> (x != y) &amp;&amp; (y == t);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="2-75"><a href="#2-75" class="headerlink" title="2.75"></a>2.75</h2><blockquote>
+<p>已知有函数 <code>int signed_high_prod(int x, int y)</code> 计算整型变量 <code>x</code> 和 <code>y</code> 相乘后高 $w$ 位的值。请编写 <code>unsigned unsigned_high_prod(unsigned x, unsigned y)</code> 来计算无符号型变量相乘后高 $w$ 位的值。</p>
+</blockquote>
+<p>由书中公式 2.18 可知，整型乘法和无符号类型的乘法在位级水平上是相同的。设 $x’$ 和 $y’$ 分别是 $x$ 和 $y$ 的无符号类型值，那么有：<br>$$<br>x’\cdot y’= (x + x_{w-1}\cdot 2^w)\cdot (y+y_{w-1}\cdot 2^w) = x\cdot y + (x_{w-1}\cdot y + y_{w-1}\cdot x)\cdot 2^w + 2^{2w}<br>$$<br>于是，$x’\cdot y’$ 的高 $w$ 位的计算方法如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">unsigned</span> <span class="title">unsigned_high_prod</span><span class="params">(<span class="keyword">unsigned</span> x, <span class="keyword">unsigned</span> y)</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> signed_high_prod((<span class="keyword">int</span>) x, (<span class="keyword">int</span>) y) + y &amp; ((<span class="keyword">int</span>) x &gt;&gt; (w - <span class="number">1</span>)) + x &amp; ((<span class="keyword">int</span>) y &gt;&gt; (w - <span class="number">1</span>));</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="2-76"><a href="#2-76" class="headerlink" title="2.76"></a>2.76</h2><blockquote>
+<p>库函数 <code>calloc</code> 有如下声明：<code>void *calloc(size_t nmemb, size_t size);</code> 。根据库文档：“函数 <code>calloc</code> 为一个数组分配内存，该数组有 <code>nmemb</code> 个元素，每个元素为 <code>size</code> 字节。内存设置为0。如果 <code>nmemb</code> 或 <code>size</code> 为0，则 <code>calloc</code> 返回  <code>NULL</code> 。”</p>
+<p>编写 <code>calloc</code> 的实现，通过调用 <code>malloc</code> 执行分配，调用 <code>memset</code> 将内存设置为0。你的代码应该没有任何由算术溢出引起的漏洞，且无论数据类型 <code>size_t</code> 用多少位表示，代码都应该正常工作。</p>
+<p>作为参考，函数 <code>malloc</code> 和 <code>memset</code> 声明如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&gt; <span class="function"><span class="keyword">void</span> *<span class="title">malloc</span><span class="params">(<span class="keyword">size_t</span> size)</span></span>;</div><div class="line">&gt; <span class="function"><span class="keyword">void</span> *<span class="title">memset</span><span class="params">(<span class="keyword">void</span> *s, <span class="keyword">int</span> c, <span class="keyword">size_t</span> n)</span></span>;</div><div class="line">&gt;</div></pre></td></tr></table></figure>
+</blockquote>
+<p>本题没有说要按照整数位级编码规则，因此应该可以使用乘法和条件语句吧。于是这个问题好像没有那么难？</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> *<span class="title">calloc</span><span class="params">(<span class="keyword">size_t</span> nmemb, <span class="keyword">size_t</span> size)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (!(nmemb &amp; size)) &#123;</div><div class="line">        <span class="keyword">return</span> <span class="literal">NULL</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">size_t</span> prod = nmemb * (size &lt;&lt; <span class="number">3</span>);</div><div class="line">    <span class="keyword">if</span> (size == prod / nmemb) &#123;</div><div class="line">        <span class="keyword">void</span> *p = <span class="built_in">malloc</span>(prod);</div><div class="line">        <span class="built_in">memset</span>(p, <span class="number">0</span>, prod);</div><div class="line">        <span class="keyword">return</span> p;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="literal">NULL</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="2-77"><a href="#2-77" class="headerlink" title="2.77"></a>2.77</h2><blockquote>
+<p>假设我们有一个任务：生成一段代码，将整数变量 <code>x</code> 乘以不同的常数因子 $K$ 。为了提高效率，我们想只使用 <code>+</code> <code>-</code> <code>&lt;&lt;</code> 运算。对于下列 $K$ 的值，写出执行乘法运算的 C 表达式，每个表达式中最多使用 3 个运算。</p>
+<ul>
+<li>$K=17$</li>
+<li>$K=-7$</li>
+<li>$K=60$</li>
+<li>$K=-112$</li>
+</ul>
+</blockquote>
+<ul>
+<li><code>(x &lt;&lt; 4) + x</code></li>
+<li><code>x - (x &lt;&lt; 3)</code></li>
+<li><code>(x &lt;&lt; 6) - (x &lt;&lt; 2)</code></li>
+<li><code>(x &lt;&lt; 4) - (x &lt;&lt; 7)</code></li>
+</ul>
+<h2 id="2-78"><a href="#2-78" class="headerlink" title="2.78"></a>2.78</h2><blockquote>
+<p>写出具有如下原型的函数的代码：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&gt; <span class="comment">/* Divide by power of 2. Assume 0 &lt;= k &lt; w-1 */</span></div><div class="line">&gt; <span class="function"><span class="keyword">int</span> <span class="title">divide_power2</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> k)</span></span>;</div><div class="line">&gt;</div></pre></td></tr></table></figure>
+</blockquote>
+<p>首先计算 <code>x &gt;&gt; k</code> ，然后考虑除法的向零舍入，即 $x&lt;0$ 且 $x$ 的最后 $k$ 位不为零时要加一。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">divide_power2</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> k)</span> </span>&#123;</div><div class="line">    <span class="keyword">int</span> q = x &gt;&gt; k;</div><div class="line">    <span class="keyword">int</span> w = <span class="keyword">sizeof</span>(<span class="keyword">int</span>) &lt;&lt; <span class="number">3</span>;</div><div class="line">    ans += (x &gt;&gt; (w - <span class="number">1</span>)) &amp;&amp; (x &amp; ((<span class="number">1</span> &lt;&lt; k) - <span class="number">1</span>));</div><div class="line">    <span class="keyword">return</span> ans;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="2-79"><a href="#2-79" class="headerlink" title="2.79"></a>2.79</h2><blockquote>
+<p>写出函数 <code>mul3div4</code> 的代码，对于整数参数 <code>x</code> ，计算 <code>3*x/4</code>，但是要遵循位级整数编码规则。你的代码计算 <code>3*x</code> 也会产生溢出。</p>
+</blockquote>
+<p>利用上一题的思想，在 $x&lt;0$ 时再进行舍入的操作。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">mul3div4</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</div><div class="line">    <span class="keyword">int</span> prod = (x &lt;&lt; <span class="number">1</span>) + x;</div><div class="line">    <span class="keyword">int</span> sign = !!(prod &amp; INT_MIN);</div><div class="line">    <span class="keyword">int</span> bias = !sign &amp;&amp; (x &amp; <span class="number">0x3</span>); <span class="comment">// 除以4时最后2位不为0且为负数时要加1</span></div><div class="line">    <span class="keyword">return</span> (prod &gt;&gt; <span class="number">2</span>) + bias;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="2-80"><a href="#2-80" class="headerlink" title="2.80"></a>2.80</h2><blockquote>
+<p>写出函数 <code>threefourths</code> 的代码。对于整数参数 <code>x</code> ，计算 $\frac 34 x$ 的值，向零舍入。它不会溢出。函数应该遵循位级整数编码规则。</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">threefourths</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> ((x &gt;&gt; <span class="number">2</span>) &lt;&lt; <span class="number">1</span>) + (x &lt;&lt; <span class="number">2</span>) + ((((x &amp; <span class="number">3</span>) &lt;&lt; <span class="number">1</span>) + (x &amp; <span class="number">3</span>)) &gt;&gt; <span class="number">2</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="2-81"><a href="#2-81" class="headerlink" title="2.81"></a>2.81</h2><blockquote>
+<p>编写 C 表达式产生如下位模式，其中 $a^k$ 表示符号 $a$ 重复 $k$ 次。假设一个$w$ 位的数据类型。代码可以包含对参数 <code>j</code> 和 <code>k</code> 的引用，它们分别表示 $j$ 和 $k$ 的值，但是不能使用表示 $w$ 的参数。</p>
+<ol>
+<li>$1^{w-k} 0^k$</li>
+<li>$0^{w-k-j} 1^k 0^j$</li>
+</ol>
+</blockquote>
+<ol>
+<li><code>~0 &lt;&lt; k</code></li>
+<li><code>((1 &lt;&lt; k) - 1) &lt;&lt; j</code></li>
+</ol>
+<p>（未完，待续）</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;重点练习&quot;&gt;&lt;a href=&quot;#重点练习&quot; class=&quot;headerlink&quot; title=&quot;重点练习&quot;&gt;&lt;/a&gt;重点练习&lt;/h1&gt;&lt;h2 id=&quot;2-10&quot;&gt;&lt;a href=&quot;#2-10&quot; class=&quot;headerlink&quot; title=&quot;2.10&quot;&gt;&lt;/a
+    
+    </summary>
+    
+      <category term="计算机基础" scheme="http://jeldorpku.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/"/>
+    
+    
+      <category term="CSAPP" scheme="http://jeldorpku.github.io/tags/CSAPP/"/>
+    
+      <category term="tech" scheme="http://jeldorpku.github.io/tags/tech/"/>
+    
+  </entry>
   
   <entry>
     <title>CSAPP 笔记（2）- 信息的表示和处理</title>
