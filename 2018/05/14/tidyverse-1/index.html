@@ -1,0 +1,933 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="tech,R,DataScience," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Jeldor's" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="更新日志：
+
+2018.4.8
+增加 na_if() 函数的介绍；
+
+
+2018.4.4 
+增加“项目的组织”一节；
+增加列操作与维度变换一节；
+
+
+2018.4.3 
+初版；">
+<meta property="og:type" content="article">
+<meta property="og:title" content="tidyverse工具链 (1)：前期准备">
+<meta property="og:url" content="http://jeldorpku.github.io/2018/05/14/tidyverse-1/index.html">
+<meta property="og:site_name" content="Jeldor's">
+<meta property="og:description" content="更新日志：
+
+2018.4.8
+增加 na_if() 函数的介绍；
+
+
+2018.4.4 
+增加“项目的组织”一节；
+增加列操作与维度变换一节；
+
+
+2018.4.3 
+初版；">
+<meta property="og:updated_time" content="2018-05-14T01:40:11.088Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="tidyverse工具链 (1)：前期准备">
+<meta name="twitter:description" content="更新日志：
+
+2018.4.8
+增加 na_if() 函数的介绍；
+
+
+2018.4.4 
+增加“项目的组织”一节；
+增加列操作与维度变换一节；
+
+
+2018.4.3 
+初版；">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"right","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://jeldorpku.github.io/2018/05/14/tidyverse-1/"/>
+
+  <title> tidyverse工具链 (1)：前期准备 | Jeldor's </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Jeldor's</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">蒋先生在这里写东西</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                tidyverse工具链 (1)：前期准备
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2018-05-14T09:40:11+08:00" content="2018-05-14">
+              2018-05-14
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/数据科学/" itemprop="url" rel="index">
+                    <span itemprop="name">数据科学</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2018/05/14/tidyverse-1/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/05/14/tidyverse-1/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>更新日志：</p>
+<ul>
+<li>2018.4.8<ul>
+<li>增加 <code>na_if()</code> 函数的介绍；</li>
+</ul>
+</li>
+<li>2018.4.4 <ul>
+<li>增加“项目的组织”一节；</li>
+<li>增加列操作与维度变换一节；</li>
+</ul>
+</li>
+<li>2018.4.3 <ul>
+<li>初版；</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<a id="more"></a>
+<h2 id="工具的准备"><a href="#工具的准备" class="headerlink" title="工具的准备"></a>工具的准备</h2><p>我们需要：</p>
+<ol>
+<li>一台电脑；</li>
+<li><a href="https://www.r-project.org" target="_blank" rel="external">R</a> 和 <a href="https://www.rstudio.com/" target="_blank" rel="external">RStudio</a>；</li>
+<li>安装需要的包，主要是 <a href="https://www.tidyverse.org/" target="_blank" rel="external"><code>tidyverse</code></a>；</li>
+<li>【可选】macOS/Linux 上的 shell 或者 Windows 下的 <a href="https://docs.microsoft.com/zh-cn/powershell/scripting/setup/installing-windows-powershell?view=powershell-6" target="_blank" rel="external">Powershell</a> （对所有系统来说都是自带的）；</li>
+</ol>
+<p>如果有兴趣了解一下整个工具链的组成，可以访问 <a href="http://hadley.nz/" target="_blank" rel="external">Hadley Wickham 的个人主页</a> 去看一看。<br><code>tidyverse</code>主要包含以下一些包：</p>
+<ul>
+<li><code>ggplot2</code>：强大的绘图与可视化包；</li>
+<li><code>dplyr</code>：提供类<code>SQL</code>的数据操作与整理接口；</li>
+<li><code>tidyr</code>：数据整理与变换的利器；</li>
+<li><code>stringr</code>：提供字符串处理的系列函数；</li>
+<li><code>lubridate</code>：强大的日期时间对象处理包；</li>
+<li><code>readr</code>：高效的数据导入接口；</li>
+<li><code>tibble</code>：提供类<code>data.frame</code>但更可塑更强大的数据结构；</li>
+<li><code>purrr</code>：函数式编程接口；</li>
+<li><code>forcats</code>：对因子变量进行处理的包；</li>
+</ul>
+<p>在载入<code>tidyverse</code>时，<code>lubridate</code>包不默认载入，需要手动载入。</p>
+<h2 id="数据分析的过程"><a href="#数据分析的过程" class="headerlink" title="数据分析的过程"></a>数据分析的过程</h2><p>科学的数据分析需要按一定的流程来进行，步骤如下：</p>
+<ol>
+<li>数据的导入(Data import)；</li>
+<li>了解数据概况与统计口径；</li>
+<li>数据的清洗；</li>
+<li>数据的操作(manipulation)、可视化(visualising)和建模(modeling)；</li>
+<li>得出一定的推论或者结论；</li>
+<li>结果的输出与交流；</li>
+</ol>
+<p>其中最重要的是了解数据的统计口径，了解数据的概况，并以此作为数据清洗的标准。数据在导入后应该保留原始的版本，进行清理后后续的分析都以清洗过的数据为起点。了解数据概况与统计口径这一步的本质其实是了解业务。只有对业务逻辑有充分的理解之后，才能更好地理解数据。在对数据进行任何操作之前，我们都有必要大开脑洞地去想可能出现什么状况，并对原始数据集中的样本进行抽样检查，看看是否有我们没有想到的“脏数据”出现。</p>
+<h2 id="数据的导入"><a href="#数据的导入" class="headerlink" title="数据的导入"></a>数据的导入</h2><h3 id="csv-文件"><a href="#csv-文件" class="headerlink" title="csv 文件"></a><code>csv</code> 文件</h3><p>一般情况下，我们用于交流的数据传递格式都是<code>csv</code>格式，即 comma-separated values 。<code>csv</code>文件中每一行都是表中的一行，列之间用西文逗号分隔。这一格式的数据往往是从大型数据库中导出的，因此本身的格式会比较整齐。如果用<code>R</code>进行数据分析，一个好的<code>csv</code>文件应该满足以下条件：</p>
+<ol>
+<li>有表头；</li>
+<li>表头的项目数和实际表的列数相同；</li>
+<li>数据中不含有西文逗号（否则影响分列）；</li>
+<li>对含有非<code>ASCII</code>字符（例如中文）的文件，编码应为<code>UTF-8</code>。</li>
+</ol>
+<p><code>csv</code>格式的文件是纯文本文件。我们可以通过一些命令行工具来了解一下它大概长什么样子。在 shell 中我们可以用 <code>head data.csv</code> 来查看文件头部的情况，在 Powershell 中可以用 <code>Get-Content data.csv | select -first 10</code> 来看文件的前 10 行。对于一般列比较少的文件可以这样操作，如果列比较多很难看清楚，就直接导入 <code>R</code> 里面再看。</p>
+<p>读入 <code>csv</code> 文件时我们使用 <code>readr</code> 包中的 <code>read_csv()</code>函数，它以文件名为参数。对于上面定义的“干净”的文件，直接读入就可以获得很好的效果。读入之后可以用 <code>View()</code> 函数直接在 RStudio 中查看读进来的数据。</p>
+<p>如果读进来的汉字无法正常显示，说明原来的文件中的数据编码不是 <code>UTF-8</code>。此时比较好的解决方案是在 Windows 下用 <a href="https://notepad-plus-plus.org/" target="_blank" rel="external">Notepad++</a> 打开它，然后点击“编码”-&gt;“转为UTF-8编码”。</p>
+<h3 id="其他分隔符文件"><a href="#其他分隔符文件" class="headerlink" title="其他分隔符文件"></a>其他分隔符文件</h3><p>既然有用逗号分隔的文件，就有用其他分隔符分隔列的文件格式。最常见的是用制表符<tab>来分隔。制表符是一个空白字符，在编码中用<code>&#39;\t&#39;</code>来显式表示。读入这样的文件时，我们用<code>readr</code>包中的<code>read_delim()</code>函数。指定文件名和分隔符即可正确读入文件。用法为<code>read_delim(file = &quot;data.txt&quot;, delim = &quot;\t&quot;)</code>。</tab></p>
+<h3 id="Excel-文件"><a href="#Excel-文件" class="headerlink" title="Excel 文件"></a>Excel 文件</h3><p>如果已经经过别人处理的二手数据写在 Excel 中需要读入的话，我们选用 <code>readxl</code> 包中的 <a href="http://readxl.tidyverse.org/reference/read_excel.html" target="_blank" rel="external"><code>read_excel()</code></a> 函数。这个函数可以指定读入某一张工作表的某个区域。不过一般情况下直接读入 Excel 文件会遇到一些别的问题，因为数据是以二进制的方式存储在 Excel 文件中的。如果条件允许，我们还是尽可能使用纯文本作为导入的源。</p>
+<blockquote>
+<p>注：<code>readxl</code> 包需要在 <code>tidyverse</code> 包之外独立安装。</p>
+</blockquote>
+<h2 id="数据的清洗"><a href="#数据的清洗" class="headerlink" title="数据的清洗"></a>数据的清洗</h2><p>数据清洗是一个<strong>非常重要</strong>的步骤。它是以后所有工作的基石，如果有疏漏的话可能会把后面所有的工作都带跑偏。因此在这里我们必须重视数据清洗。</p>
+<h3 id="数据概览与质量评估"><a href="#数据概览与质量评估" class="headerlink" title="数据概览与质量评估"></a>数据概览与质量评估</h3><p>对于导入后的数据，我们要先浏览一下它的大致情况。在这里我们假设导入的数据是一个 <code>data.frame</code> 或者 <code>tibble</code>，即它满足一个表的结构。</p>
+<p>预览的第一步可以用 <code>head()</code> 函数。通过它我们可以了解数据的大致结构，譬如都有哪些列，列的类型和名称都分别是什么。接着我们可以用 <code>summary()</code> 函数对数据进行概览。<br>这一函数会告诉我们数据表的每一列（各自作为 <code>vector</code>）大致的分布情况。对于数字型变量，它会给出最大值、最小值、四分位数、均值等。对于字符型变量，它会告诉我们一共有多少个元素。这里我们所关注的比较重要的一点是 <code>NA</code> 的数量。每个 <code>NA</code> 都代表一个缺失值，如果缺失值太多，我们就需要去追究它出现的原因。各列的最值也可以告诉我们一些信息。一般这些最值都有可能是异常值，我们需要结合业务本身来做出一个初步的判断。假如有完全雷同的数据记录也要及时发现，结合实际情况处理。另外，给出的数据当中可能有一些列之间存在一定的逻辑关系，我们也需要对它们进行一定的验证。比如用车数据中的里程费加上时长费是否等于最后的应付金额，优惠券使用比例应该在 0 和 1 之间等。对于这些异常的数据，我们要结合<strong>分析目的</strong>、<strong>出现原因</strong>和<strong>影响面</strong>做出妥当的决定。如果影响面比较小或者这个列不在分析范围之内，可以考虑直接忽略或者删除相关的记录；如果是统计口径不可靠但有其他方式来计算相关列，则可以用计算值来填充缺失或异常的数据点。数据质量如果太差，则可以中止整个流程，重新获取数据。</p>
+<p>另外有的时候，<strong>缺失值</strong>并不简单地表现为数据表中存在 <code>NA</code> ，而是它根本就不存在于我们的记录中。比如2017年国庆期间的用车订单数据全部消失了，那我们在处理的时候是根本看不到的。这些情况我们在分析初期进行数据质量评估的时候一定要考虑到，尽量保证数据的完整性。</p>
+<h3 id="清洁数据的标准"><a href="#清洁数据的标准" class="headerlink" title="清洁数据的标准"></a>清洁数据的标准</h3><p>经过了质量评估之后，手头的数据就可以让我们进行接下来的操作了。数据清洗的第二个环节是数据格式的调整，目的是让数据满足<strong>直接可用</strong>的要求。清洁数据的标准有三条：</p>
+<ul>
+<li>一行(row)一条观测(observation)；</li>
+<li>一列(column)一个变量(variable)；</li>
+<li>一个格子(cell)一个值(value)；</li>
+</ul>
+<p>对于这个原则一定要深刻地理解。对于一张表而言，它必然会有一个<strong>主键(primary key)</strong>，即任意两条记录的主键都是不一样的，通过主键可以在这张表中唯一地找到一行记录。对于一张表来说，主键不同的情况下，它是否满足清洁的标准也是不同的。</p>
+<blockquote>
+<p>注：这里所说的主键和数据库中的主键不同，它是一个虚拟的存在，代表我们看待数据的维度。</p>
+</blockquote>
+<p>假设我们现在面对的是一个文章列表，里面有很多很多的文章，每个文章都有 ID 、标题、作者、发布日期、标签等属性。那么从文章的维度来观察，文章的ID就是主键。它的作者、发布日期、标题等变量必须分列存储才是清洁的数据。但是这里有一个例外就是标签。一个文章可以有一个标签、有很多标签或者没有标签，是一个一对多的关系，所以这个时候每个标签都分列存储是不可行的。因为文章是我们的观察维度，所以标签可以用一定的分隔符连接在一起作为一个字符串存储在一列中。这个时候虽然标签这一列并不满足清洁标准，但是由于观察维度是文章，所以这样的数据我们就已经认为是清洁的了。</p>
+<p>这时如果我们想对标签进行分类分析，那么观察维度（或者说主键）就变成了标签，此时我们就要把原来聚合在一个格子里面的标签全部打散，每个格子只能有一个标签，这样才算是清洁的，原来的格式反而是不清洁的。</p>
+<p>再举一个用车订单的例子。某分时租赁品牌的数据库中，订单起终点的经纬度是用字符串标记的，例如 <code>(29.876587,106.554384)</code> ，这样的数据不满足<strong>直接可用</strong>的要求，因此需要对它进行处理，分割为两个数字格式的列，对应经度和纬度，这样在绘图时会更加方便。</p>
+<h3 id="清洁数据常用函数"><a href="#清洁数据常用函数" class="headerlink" title="清洁数据常用函数"></a>清洁数据常用函数</h3><p>在清洁数据时候，我们主要使用 <code>tidyr</code> 包，也会用 <code>dplyr</code> 包中的一些函数来辅助。只要装载了 <code>tidyverse</code>，这两个包都默认加载。</p>
+<p>清洁数据的时候我们分别从行和列两个角度去清洁。从行的角度来说，我们要处理部分观测点中的异常值和缺失值；从列的角度来说，我们需要让每一列变成单独的变量。另外，我们还需要考虑同一变量分布在多列中（例如 2016 年和 2017 年的 GDP 分别存在两个列的情况）所需要的处理。</p>
+<h4 id="行操作：处理缺失值和异常值"><a href="#行操作：处理缺失值和异常值" class="headerlink" title="行操作：处理缺失值和异常值"></a>行操作：处理缺失值和异常值</h4><p>对于异常值，我们可以对它们进行标记。例如我们认为，一次用车里程超过1万公里的应该是异常值，应该标记为缺失。于是我们考虑把原来的列复制一个出来，用 <a href="https://dplyr.tidyverse.org/reference/if_else.html" target="_blank" rel="external"><code>if_else()</code></a> 函数把距离超过1万公里的这些记录中的距离变量标记为 <code>NA</code> 。如果需要处理的情况比较多，可以用 <a href="https://dplyr.tidyverse.org/reference/case_when.html" target="_blank" rel="external"><code>case_when()</code></a> 函数来分别处理。<code>dplyr</code> 还提供了 <a href="https://dplyr.tidyverse.org/reference/na_if.html" target="_blank" rel="external"><code>na_if()</code></a> 来把特定的值替换成 <code>NA</code>。</p>
+<blockquote>
+<p>注：在 <code>R</code> 中，向量化(vectorised)的计算是提高计算效率非常重要的一点。所谓向量化计算就是指一个函数接收一列数作为输入，并把一列数作为输出。一般情况下输入输出的向量元素数量是一样的。<code>R</code>中非常常用的 <code>if</code> 语句就是一个典型的不可向量化的操作，因此只能写成自定义函数用 <code>apply</code> 族函数应用到一列数上。它的效率和循环相近，速度比向量化计算要慢很多。因此在处理分支情况的时候，两种情况使用 <code>if_else()</code>，多种情况使用 <code>case_when()</code>，它们都是 <code>if</code> 语句的向量化接口。这里还要做一个特别说明：++和 Excel 中的 <code>IF</code> 函数不同， <strong><code>if_else()</code> 函数不能嵌套！！！</strong>++ 关于这个向量化函数编写问题会专门有一篇文章讨论。</p>
+</blockquote>
+<p>新建列的时候可以使用 <a href="https://dplyr.tidyverse.org/reference/mutate.html" target="_blank" rel="external"><code>mutate()</code></a> 来根据现有的列新建计算列，而 <a href="https://dplyr.tidyverse.org/reference/mutate.html" target="_blank" rel="external"><code>transmute()</code></a> 则可以在新建列的同时把原来的列删除。++后者对于数据是具有破坏性的，在没有遇到内存不足等问题的时候尽量不要使用。++ 需要过滤异常值时，可以用 <a href="https://dplyr.tidyverse.org/reference/filter.html" target="_blank" rel="external"><code>filter()</code></a> 函数来把有异常值的记录直接过滤掉。<code>filter()</code> 函数相当于 <code>SQL</code> 中的 <code>WHERE</code> 子句。它可以添加多个过滤条件，每个条件都用一个逻辑表达式来定义。将它们用逗号分隔则会用<strong>逻辑与 (<code>&amp;</code>)</strong> 来对条件进行连接。如果想用逻辑或 (<code>|</code>) 的话就不能用逗号。</p>
+<blockquote>
+<p>注：逻辑与运算的优先级高于逻辑或，所以必要的时候一定要加上圆括号标定优先级，也方便阅读。</p>
+</blockquote>
+<p>处理缺失值有三种方式，分别是<strong>填充</strong>、<strong>替换</strong>和<strong>丢弃</strong>。我们逐一讨论。<code>tidyr</code> 为我们提供了 <a href="https://tidyr.tidyverse.org/reference/fill.html" target="_blank" rel="external"><code>fill()</code></a> 函数用于填充缺失值，但仅限于用上一个值或者下一个值来填充，一般来说不是特别有用，毕竟填充并不是常用的处理缺失值的方式。替换方面，我们可以使用 <a href="http://tidyr.tidyverse.org/reference/replace_na.html" target="_blank" rel="external"><code>replace_na()</code></a> 。它的好处是可以面向整个表进行替换，用一个 <code>list</code> 作为参数就可以指定不同的列用不同的值替换缺失值。如果要丢弃含有缺失值的行，可以使用 <a href="https://tidyr.tidyverse.org/reference/drop_na.html" target="_blank" rel="external"><code>drop_na()</code></a>，它删除所有含有缺失值的行。如果有些含有缺失值的列你希望保留相关行，可以用类似 <a href="https://dplyr.tidyverse.org/reference/select.html" target="_blank" rel="external"><code>select()</code></a> 的语法选择你想要丢弃缺失值的列。</p>
+<p>如果我们遇到隐式的缺失值，<code>tidyr</code> 为我们提供了 <code>complete()</code> <code>expand()</code> <code>crossing()</code> <code>nesting()</code> <code>full_seq()</code> 等函数来补全它们。这些函数速度会比较慢，我目前用到也比较少，有需要可以参考 <a href="https://tidyr.tidyverse.org/reference/index.html" target="_blank" rel="external">它们的文档</a>。</p>
+<h4 id="列操作：列的拆分与合并"><a href="#列操作：列的拆分与合并" class="headerlink" title="列操作：列的拆分与合并"></a>列操作：列的拆分与合并</h4><p>有的时候我们会发现，一个变量的值被拆分成多列存储了，这时我们就需要把它们合并为一列。最典型的例子就是时间，有的库表会把年月日时分秒分成六个列来存储，这时我们就需要用 <a href="https://tidyr.tidyverse.org/reference/unite.html" target="_blank" rel="external"><code>unite()</code></a> 函数来把它们合并起来。它默认在各字段之间加上 <code>_</code> 作为连接符，并在生成新列的同时移除原来的列。</p>
+<p>如果说我们的一些变量被合并在同一个列了，那么可以用 <code>unite()</code> 的互补函数 <a href="https://tidyr.tidyverse.org/reference/separate.html" target="_blank" rel="external"><code>separate()</code></a>。它可以把一个列按照指定的分隔符拆分开来。它还提供了一些选项来处理实际分割数比指定的数量多或者少的时候怎么处理，文档中有详细的描述。与它类似的还有 <a href="https://tidyr.tidyverse.org/reference/extract.html" target="_blank" rel="external"><code>extract()</code></a> 函数，用法相对复杂一些，但也有独特的功能。</p>
+<p>还有一种情况是前面提到过的文章标签。一个文章对应很多个标签，如果我们希望对标签进行统计，就需要把处在一行中的标签展开成许多行。此时我们需要用到的函数是 <a href="https://tidyr.tidyverse.org/reference/separate_rows.html" target="_blank" rel="external"><code>separate_rows()</code></a>，指定了分隔符之后它就会为我们把所有行都正确地拆开，而保持其他列的内容不变。</p>
+<h4 id="表的维度变化"><a href="#表的维度变化" class="headerlink" title="表的维度变化"></a>表的维度变化</h4><p>有的时候我们会遇到这样的数据：各个国家从 2010 年到 2017 年的 GDP 值，每行是一个国家，每列是一个年份。</p>
+<table>
+<thead>
+<tr>
+<th>country</th>
+<th>2010</th>
+<th>2011</th>
+<th>2012</th>
+<th>2013</th>
+<th>2014</th>
+<th>…</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>China</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>USA</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>这个时候我们理所当然认为这个数据是清洁的。但是我们如果要计算每个国家指定年份（比如 2012 年到 2016 年） GDP 的总和，就会非常不方便了。于是我们希望以键值对的方式存储所有 GDP 的值。仔细一想也可以理解，因为整张表里面的值全部都是 GDP，每年在每个国家进行一次观测的话，应该全部都在一列才对。这个时候我们就需要用 <a href="https://tidyr.tidyverse.org/reference/gather.html" target="_blank" rel="external"><code>gather()</code></a> 函数来把它们聚集起来。聚集之后，原来的列名就会变成变量存储在一列中，格子里面的值也会存储在另外一列中。变换后的表格如下：</p>
+<table>
+<thead>
+<tr>
+<th>country</th>
+<th>year</th>
+<th>GDP</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>China</td>
+<td>2010</td>
+<td></td>
+</tr>
+<tr>
+<td>USA</td>
+<td>2010</td>
+<td></td>
+</tr>
+<tr>
+<td>China</td>
+<td>2011</td>
+<td></td>
+</tr>
+<tr>
+<td>USA</td>
+<td>2011</td>
+<td></td>
+</tr>
+<tr>
+<td>…</td>
+<td>…</td>
+</tr>
+</tbody>
+</table>
+<p>其对应的反向操作是 <a href="https://tidyr.tidyverse.org/reference/spread.html" target="_blank" rel="external"><code>spread()</code></a> ，它会把某一列的值变成列名展开，把另一列的值也铺开存储在一个方阵里面，原来的对应关系依然保持不变。有了这样的变换能力，我们就可以对数据进行更灵活的操作了。</p>
+<h2 id="项目的组织"><a href="#项目的组织" class="headerlink" title="项目的组织"></a>项目的组织</h2><p>当我们面临一个相对大型的项目的时候，我们会遇到非常多的数据、图表和模型。为了和他人进行交流，我们还会产生大量的数据输出，这在合作中都是不可避免的。因此，用一个合理的方式组织我们的脚本、数据和输出是一件非常重要的事。它可以让我们方便地找到我们想要的东西，并记录下我们什么时候做了什么。</p>
+<h3 id="建项"><a href="#建项" class="headerlink" title="建项"></a>建项</h3><p><code>R</code> 是一个有控制台的应用程序，所以就有一个概念叫做<strong>工作目录(working directory)</strong>。一般情况下，你在哪里打开 <code>R</code> ，哪里就是你的工作目录。这对于一台电脑上有很多个项目并行的情况来说其实是非常糟糕的。为了避免我们的 <code>R</code> 进程在电脑上铺得到处都是且处处留下 <code>.Rhistory</code> 和 <code>.RData</code> 这样的垃圾，我们可以选择用 <code>Rstudio</code> 中的 <strong>项目(project)</strong> 来解决这个问题。</p>
+<p>对于小项目来说，如果数据量不大、需求比较少、工程量可控，那么我们可以用一个文件夹装下它。我们直接用一个空文件夹建项，在其中建立一个新文件夹名为 <code>data</code> 专门存放文本数据，再建立一个新文件夹名为 <code>output</code> 专门存放输出，接着把相关的脚本都直接放在根目录下面就可以了。文件结构如下图所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">graph TD</div><div class="line">A((Project)) --&gt; B((data))</div><div class="line">A --&gt; C((output))</div><div class="line">A --&gt; D(Project.Rproj)</div><div class="line">A --&gt; E&#123;Scripts&#125;</div><div class="line">B --&gt; F(data1.csv)</div><div class="line">B --&gt; G(data2.csv)</div><div class="line">C --&gt; H(output.csv)</div><div class="line">E --&gt; I(01-data_import.R)</div><div class="line">E --&gt; J(02-user_model.R)</div></pre></td></tr></table></figure>
+<p>如果是一个特别大的项目，我建议在一个文件夹中设置了 <code>data</code> 和 <code>output</code> 文件夹之后，再为每个子任务分别建立小的文件夹并分别建项（不要在大的文件夹中建项）。这样既保证了任务之间的独立性，也让这个大项目组织在一起不会弄得到处都是。组织结构如下图，每个小项目中的结构都是类似的。大家都从根目录下的 <code>data</code> 文件夹中读取数据，把输出统一放在 <code>output</code> 目录下。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">graph TD</div><div class="line">A((BigProject)) --&gt; B((data))</div><div class="line">A --&gt; C((output))</div><div class="line">A --&gt; D((Project1))</div><div class="line">A --&gt; E((Project2))</div><div class="line">A --&gt; I((...))</div><div class="line">B --&gt; F(data1.csv)</div><div class="line">B --&gt; G(data2.csv)</div><div class="line">C --&gt; H(output.csv)</div></pre></td></tr></table></figure>
+<p>这样的项目组织可以让你的每个项目之间紧密联系而又保持整体的独立性，这也是 <code>RStudio</code> 为我们提供的一个非常便捷的功能。关于建项可以参考 <a href="https://r4ds.had.co.nz/workflow-projects.html" target="_blank" rel="external">Hadley 写的这个文档</a>，和 <a href="https://support.rstudio.com/hc/en-us/articles/200526207-Using-Projects" target="_blank" rel="external">RStudio 官方文档</a>.</p>
+<h3 id="工作空间"><a href="#工作空间" class="headerlink" title="工作空间"></a>工作空间</h3><p>通常来讲，我们在台式机或者笔记本电脑上运行的分析程序往往都只需要处理非常少的数据，一般情况下运行的时间应该以分钟计就绰绰有余了。如果你有一个程序有跑上很久很久，那只能是两种情况：(1) 这个程序本不是只有一个 CPU 的电脑该干的；(2) 程序写得太糟糕了。后者往往占据了绝大多数情况。</p>
+<p>就这样简单的运算量而言，我们其实并不需要在工作空间中存储太多的数据，因此把当前的工作空间全部保存在 <code>.RData</code> 里面这一行为在经历了反复折腾之后被我认为是没有必要的。一方面是因为所有数据都可以通过脚本的序列执行来得到，另一方面是因为这些数据的装载和存储会随着项目的推进消耗越来越多的时间，而其中大部分的数据在日常的分析工作中都是用不到的。所以我推荐在 <code>RStudio</code> 中把默认存储和装载 <code>.RData</code> 的选项都关上，可以节约很多时间。</p>
+<h3 id="分析过程的记录"><a href="#分析过程的记录" class="headerlink" title="分析过程的记录"></a>分析过程的记录</h3><p>如果接触过数据库应该会了解，数据库在导出的时候，不仅仅会保留当前时间点的数据库快照（即当前内容），更重要的是这个数据库从建立之日起的日志。这份日志往往会比数据库快照大许多倍，它记录了数据库建立以来的每一次操作。通过它，数据库管理员可以复现出过去任意一个时间点数据库的状态。在 <code>R</code> 中也是如此，我们需要有一个文档去记录我们做分析所经历的过程，以及留下除了代码之外的“说人话”的记录。</p>
+<p>这一记录我们使用 <code>Rmarkdown</code> 来进行。Markdown 本身是一种轻量好用的标记语言，可以用一些符号的标记轻松实现文档的格式化。<code>Rmarkdown</code> 是一种可以内嵌 <code>R</code> 代码的 Markdown 格式，里面的代码不但可以运行，还可以把输出也放在文档中，实现完全自动化。<code>Rmarkdown</code> 的语法和具体操作可以参见 <a href="https://r4ds.had.co.nz/r-markdown.html" target="_blank" rel="external">这个简单的介绍</a> 。如果刚开始不会使用的话，可以先简单地把代码和文字都写在同一个文档下。这个文档不必优美好看，不必满足最后输出的标准，但是一定要清晰翔实地记录分析的全过程。</p>
+<h3 id="重复操作的函数化"><a href="#重复操作的函数化" class="headerlink" title="重复操作的函数化"></a>重复操作的函数化</h3><p><strong>一段代码只要用到了第二次，就一定要写成函数。</strong></p>
+<p>把重复使用的代码写成函数是一件非常重要的事。一方面可以提高调用的效率，减少代码量。另一方面，通过函数名我们可以从代码中就知道我大概在做什么。在分析的过程中，千万不要心存侥幸觉得这个代码就只用一两次，就用复制粘贴的方式来重用。这样的习惯长期来看是非常糟糕的。</p>
+<p>当第二次用到同样一段代码时，应该把其中更改的部分选取出来，把它们作为变量，然后把相关的代码封装成函数。如果以后再使用到这个函数，却需要其他的功能，则可以再给函数加参数，进行进一步的抽象。函数库可以分不同的功能和输出格式分文件存储，并统一命名方式，方便阅读和调用。关于函数的重要性和写法，请参见 <a href="https://r4ds.had.co.nz/functions.html" target="_blank" rel="external">R for Data Science 的相关章节</a>。</p>
+<h2 id="推荐阅读"><a href="#推荐阅读" class="headerlink" title="推荐阅读"></a>推荐阅读</h2><ul>
+<li><a href="https://r4ds.had.co.nz" target="_blank" rel="external">R for Data Science</a>;</li>
+<li><a href="https://hadley.nz/" target="_blank" rel="external">Hadley Wickham 的个人主页</a>;</li>
+<li><a href="https://www.tidyverse.org/" target="_blank" rel="external"><code>tidyverse</code></a>;</li>
+<li><a href="https://tidyr.tidyverse.org/" target="_blank" rel="external"><code>tidyr</code></a>;</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/uploads/wechat-qcode.jpg" alt="Jeldor wechat" style="width: 200px; max-width: 100%;"/>
+    <div>欢迎关注我和天一维护的公众号：两个少年的奇幻漂流！</div>
+</div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/tech/" rel="tag">#tech</a>
+          
+            <a href="/tags/R/" rel="tag">#R</a>
+          
+            <a href="/tags/DataScience/" rel="tag">#DataScience</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/12/how-long-is-it-since-you-last-wrote-something/" rel="next" title="你有多久没有写过一篇文章了？">
+                <i class="fa fa-chevron-left"></i> 你有多久没有写过一篇文章了？
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/05/14/tidyverse-2/" rel="prev" title="tidyverse工具链 (2)：数据操作">
+                tidyverse工具链 (2)：数据操作 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2018/05/14/tidyverse-1/"
+     data-title="tidyverse工具链 (1)：前期准备"
+     data-content=""
+     data-url="http://jeldorpku.github.io/2018/05/14/tidyverse-1/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2018/05/14/tidyverse-1/"
+           data-title="tidyverse工具链 (1)：前期准备" data-url="http://jeldorpku.github.io/2018/05/14/tidyverse-1/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="Jeldor" />
+          <p class="site-author-name" itemprop="name">Jeldor</p>
+          <p class="site-description motion-element" itemprop="description">但行好事，莫问前程。</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">11</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/JeldorPKU" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://weibo.com/jeldor" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/jeldor" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.douban.com/people/53207230/" target="_blank" title="豆瓣">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  豆瓣
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#工具的准备"><span class="nav-number">1.</span> <span class="nav-text">工具的准备</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据分析的过程"><span class="nav-number">2.</span> <span class="nav-text">数据分析的过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据的导入"><span class="nav-number">3.</span> <span class="nav-text">数据的导入</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#csv-文件"><span class="nav-number">3.1.</span> <span class="nav-text">csv 文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其他分隔符文件"><span class="nav-number">3.2.</span> <span class="nav-text">其他分隔符文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Excel-文件"><span class="nav-number">3.3.</span> <span class="nav-text">Excel 文件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据的清洗"><span class="nav-number">4.</span> <span class="nav-text">数据的清洗</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数据概览与质量评估"><span class="nav-number">4.1.</span> <span class="nav-text">数据概览与质量评估</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#清洁数据的标准"><span class="nav-number">4.2.</span> <span class="nav-text">清洁数据的标准</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#清洁数据常用函数"><span class="nav-number">4.3.</span> <span class="nav-text">清洁数据常用函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#行操作：处理缺失值和异常值"><span class="nav-number">4.3.1.</span> <span class="nav-text">行操作：处理缺失值和异常值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#列操作：列的拆分与合并"><span class="nav-number">4.3.2.</span> <span class="nav-text">列操作：列的拆分与合并</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#表的维度变化"><span class="nav-number">4.3.3.</span> <span class="nav-text">表的维度变化</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#项目的组织"><span class="nav-number">5.</span> <span class="nav-text">项目的组织</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#建项"><span class="nav-number">5.1.</span> <span class="nav-text">建项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#工作空间"><span class="nav-number">5.2.</span> <span class="nav-text">工作空间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分析过程的记录"><span class="nav-number">5.3.</span> <span class="nav-text">分析过程的记录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#重复操作的函数化"><span class="nav-number">5.4.</span> <span class="nav-text">重复操作的函数化</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#推荐阅读"><span class="nav-number">6.</span> <span class="nav-text">推荐阅读</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jeldor</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"jeldor"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
