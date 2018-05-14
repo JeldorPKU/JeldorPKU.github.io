@@ -86,22 +86,16 @@
 
 
 
-<meta name="description" content="听说想写代码挣钱的话，买书的钱加起来就是第一个月工资。终于没有嫌书贵，下手买了《深入理解计算机系统（第3版）》。为了保证学习效果，我自己在这里开一个小栏目做重点记录和习题解答。我对 C 语言相对熟练，于是决定啃一下这块硬骨头，希望能有毅力一直写下去。
-先把 K&amp;amp;R 书中的 hello.c 拿出来作为开篇献祭。
-12345#include &amp;lt;stdio.h&amp;gt;int main()">
+<meta name="description" content="听说想写代码挣钱的话，买书的钱加起来就是第一个月工资。终于没有嫌书贵，下手买了《深入理解计算机系统（第3版）》。为了保证学习效果，我自己在这里开一个小栏目做重点记录和习题解答。我对 C 语言相对熟练，于是决定啃一下这块硬骨头，希望能有毅力一直写下去。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CSAPP 笔记 (1)">
 <meta property="og:url" content="http://jeldorpku.github.io/2017/03/05/CSAPP-Notes-1/index.html">
 <meta property="og:site_name" content="Jeldor's">
-<meta property="og:description" content="听说想写代码挣钱的话，买书的钱加起来就是第一个月工资。终于没有嫌书贵，下手买了《深入理解计算机系统（第3版）》。为了保证学习效果，我自己在这里开一个小栏目做重点记录和习题解答。我对 C 语言相对熟练，于是决定啃一下这块硬骨头，希望能有毅力一直写下去。
-先把 K&amp;amp;R 书中的 hello.c 拿出来作为开篇献祭。
-12345#include &amp;lt;stdio.h&amp;gt;int main()">
-<meta property="og:updated_time" content="2017-03-05T15:35:08.000Z">
+<meta property="og:description" content="听说想写代码挣钱的话，买书的钱加起来就是第一个月工资。终于没有嫌书贵，下手买了《深入理解计算机系统（第3版）》。为了保证学习效果，我自己在这里开一个小栏目做重点记录和习题解答。我对 C 语言相对熟练，于是决定啃一下这块硬骨头，希望能有毅力一直写下去。">
+<meta property="og:updated_time" content="2018-05-14T01:10:59.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CSAPP 笔记 (1)">
-<meta name="twitter:description" content="听说想写代码挣钱的话，买书的钱加起来就是第一个月工资。终于没有嫌书贵，下手买了《深入理解计算机系统（第3版）》。为了保证学习效果，我自己在这里开一个小栏目做重点记录和习题解答。我对 C 语言相对熟练，于是决定啃一下这块硬骨头，希望能有毅力一直写下去。
-先把 K&amp;amp;R 书中的 hello.c 拿出来作为开篇献祭。
-12345#include &amp;lt;stdio.h&amp;gt;int main()">
+<meta name="twitter:description" content="听说想写代码挣钱的话，买书的钱加起来就是第一个月工资。终于没有嫌书贵，下手买了《深入理解计算机系统（第3版）》。为了保证学习效果，我自己在这里开一个小栏目做重点记录和习题解答。我对 C 语言相对熟练，于是决定啃一下这块硬骨头，希望能有毅力一直写下去。">
 
 
 
@@ -321,6 +315,7 @@
 
       
         <p>听说想写代码挣钱的话，买书的钱加起来就是第一个月工资。终于没有嫌书贵，下手买了《深入理解计算机系统（第3版）》。为了保证学习效果，我自己在这里开一个小栏目做重点记录和习题解答。我对 C 语言相对熟练，于是决定啃一下这块硬骨头，希望能有毅力一直写下去。</p>
+<a id="more"></a>
 <p>先把 K&amp;R 书中的 <code>hello.c</code> 拿出来作为开篇献祭。</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"hello, world\n"</span>);</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h2 id="第1章-计算机系统漫游"><a href="#第1章-计算机系统漫游" class="headerlink" title="第1章 计算机系统漫游"></a>第1章 计算机系统漫游</h2><p>本章涉及的知识主要是计算机体系和架构方面的基础介绍。首先抛出的观点是<strong>信息就是位+上下文</strong>。刚刚那个 <code>hello.c</code> 程序对计算机而言只是一个文本流，其中每个字符都对应了一个整数（ASCII），这些整数又分别对应一个8位二进制表达。于是这些二进制数拼在一起成为了一个由0和1组成的串。这就是<strong>位</strong>。而究竟如何去解释它们，则需要我们去指定。当我们以C语言源代码去解读时，它们就被还原为一个个字符，重新组成上面的代码，此为<strong>上下文</strong>。随后的一些内容讲述了这段程序在计算机中是如何在硬件和软件中变为可执行程序并被执行的。</p>

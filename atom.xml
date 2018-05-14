@@ -57,11 +57,11 @@
       <category term="随笔" scheme="http://jeldorpku.github.io/categories/%E9%9A%8F%E7%AC%94/"/>
     
     
+      <category term="thoughts" scheme="http://jeldorpku.github.io/tags/thoughts/"/>
+    
       <category term="Beijing" scheme="http://jeldorpku.github.io/tags/Beijing/"/>
     
       <category term="articles" scheme="http://jeldorpku.github.io/tags/articles/"/>
-    
-      <category term="thoughts" scheme="http://jeldorpku.github.io/tags/thoughts/"/>
     
   </entry>
   
@@ -70,9 +70,10 @@
     <link href="http://jeldorpku.github.io/2017/03/10/CSAPP-Exercise-2/"/>
     <id>http://jeldorpku.github.io/2017/03/10/CSAPP-Exercise-2/</id>
     <published>2017-03-10T03:03:32.000Z</published>
-    <updated>2017-03-13T16:27:22.000Z</updated>
+    <updated>2018-05-14T01:11:17.000Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="重点练习"><a href="#重点练习" class="headerlink" title="重点练习"></a>重点练习</h1><h2 id="2-10"><a href="#2-10" class="headerlink" title="2.10"></a>2.10</h2><blockquote>
+    <content type="html"><![CDATA[<a id="more"></a>
+<h1 id="重点练习"><a href="#重点练习" class="headerlink" title="重点练习"></a>重点练习</h1><h2 id="2-10"><a href="#2-10" class="headerlink" title="2.10"></a>2.10</h2><blockquote>
 <p>考虑如下代码：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&gt; <span class="function"><span class="keyword">void</span> <span class="title">inplace_swap</span><span class="params">(<span class="keyword">int</span> *x, <span class="keyword">int</span> *y)</span> </span>&#123;</div><div class="line">&gt;     *y = *x ^ *y;</div><div class="line">&gt;     *x = *x ^ *y;</div><div class="line">&gt;     *y = *x ^ *y;</div><div class="line">&gt; &#125;</div><div class="line">&gt;</div></pre></td></tr></table></figure>
 </blockquote>
@@ -345,7 +346,8 @@
     
     <summary type="html">
     
-      &lt;h1 id=&quot;重点练习&quot;&gt;&lt;a href=&quot;#重点练习&quot; class=&quot;headerlink&quot; title=&quot;重点练习&quot;&gt;&lt;/a&gt;重点练习&lt;/h1&gt;&lt;h2 id=&quot;2-10&quot;&gt;&lt;a href=&quot;#2-10&quot; class=&quot;headerlink&quot; title=&quot;2.10&quot;&gt;&lt;/a
+      &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h1 id=&quot;重点练习&quot;&gt;&lt;a href=&quot;#重点练习&quot; class=&quot;headerlink&quot; title=&quot;重点练习&quot;&gt;&lt;/a&gt;重点练习&lt;/h1&gt;&lt;h2 id=&quot;2-10&quot;&gt;&lt;a href=&quot;#2-10&quot; class=&quot;headerlink
     
     </summary>
     
@@ -363,9 +365,10 @@
     <link href="http://jeldorpku.github.io/2017/03/09/CSAPP-Notes-2/"/>
     <id>http://jeldorpku.github.io/2017/03/09/CSAPP-Notes-2/</id>
     <published>2017-03-09T00:57:49.000Z</published>
-    <updated>2017-03-10T01:24:56.000Z</updated>
+    <updated>2018-05-14T01:10:21.000Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="信息存储"><a href="#信息存储" class="headerlink" title="信息存储"></a>信息存储</h1><h2 id="十六进制与字节顺序"><a href="#十六进制与字节顺序" class="headerlink" title="十六进制与字节顺序"></a>十六进制与字节顺序</h2><p>在计算机中，信息的存储均为<strong>二进制位(bit)</strong>的形式。每八个二进制位就形成一个<strong>字节(byte)</strong>。由于二进制位的表示将会把数字拉得很长，通常我们会用十六进制来表示。每个十六进制位都恰好表示四个二进制位，高位补0。</p>
+    <content type="html"><![CDATA[<a id="more"></a>
+<h1 id="信息存储"><a href="#信息存储" class="headerlink" title="信息存储"></a>信息存储</h1><h2 id="十六进制与字节顺序"><a href="#十六进制与字节顺序" class="headerlink" title="十六进制与字节顺序"></a>十六进制与字节顺序</h2><p>在计算机中，信息的存储均为<strong>二进制位(bit)</strong>的形式。每八个二进制位就形成一个<strong>字节(byte)</strong>。由于二进制位的表示将会把数字拉得很长，通常我们会用十六进制来表示。每个十六进制位都恰好表示四个二进制位，高位补0。</p>
 <p>内存中的空间是以字节为单位的。而一个字节只有8位，可以存储的数据非常少。因此跨字节的存储就成为了必需。这也就意味着对于内存中的对象，我们需要两个规则：</p>
 <ul>
 <li>这个对象的地址是什么？</li>
@@ -450,7 +453,8 @@
     
     <summary type="html">
     
-      &lt;h1 id=&quot;信息存储&quot;&gt;&lt;a href=&quot;#信息存储&quot; class=&quot;headerlink&quot; title=&quot;信息存储&quot;&gt;&lt;/a&gt;信息存储&lt;/h1&gt;&lt;h2 id=&quot;十六进制与字节顺序&quot;&gt;&lt;a href=&quot;#十六进制与字节顺序&quot; class=&quot;headerlink&quot; title=
+      &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h1 id=&quot;信息存储&quot;&gt;&lt;a href=&quot;#信息存储&quot; class=&quot;headerlink&quot; title=&quot;信息存储&quot;&gt;&lt;/a&gt;信息存储&lt;/h1&gt;&lt;h2 id=&quot;十六进制与字节顺序&quot;&gt;&lt;a href=&quot;#十六进制与字节顺序&quot; class=&quot;
     
     </summary>
     
@@ -468,9 +472,10 @@
     <link href="http://jeldorpku.github.io/2017/03/05/CSAPP-Notes-1/"/>
     <id>http://jeldorpku.github.io/2017/03/05/CSAPP-Notes-1/</id>
     <published>2017-03-05T14:56:17.000Z</published>
-    <updated>2017-03-05T15:35:08.000Z</updated>
+    <updated>2018-05-14T01:10:59.000Z</updated>
     
     <content type="html"><![CDATA[<p>听说想写代码挣钱的话，买书的钱加起来就是第一个月工资。终于没有嫌书贵，下手买了《深入理解计算机系统（第3版）》。为了保证学习效果，我自己在这里开一个小栏目做重点记录和习题解答。我对 C 语言相对熟练，于是决定啃一下这块硬骨头，希望能有毅力一直写下去。</p>
+<a id="more"></a>
 <p>先把 K&amp;R 书中的 <code>hello.c</code> 拿出来作为开篇献祭。</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"hello, world\n"</span>);</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h2 id="第1章-计算机系统漫游"><a href="#第1章-计算机系统漫游" class="headerlink" title="第1章 计算机系统漫游"></a>第1章 计算机系统漫游</h2><p>本章涉及的知识主要是计算机体系和架构方面的基础介绍。首先抛出的观点是<strong>信息就是位+上下文</strong>。刚刚那个 <code>hello.c</code> 程序对计算机而言只是一个文本流，其中每个字符都对应了一个整数（ASCII），这些整数又分别对应一个8位二进制表达。于是这些二进制数拼在一起成为了一个由0和1组成的串。这就是<strong>位</strong>。而究竟如何去解释它们，则需要我们去指定。当我们以C语言源代码去解读时，它们就被还原为一个个字符，重新组成上面的代码，此为<strong>上下文</strong>。随后的一些内容讲述了这段程序在计算机中是如何在硬件和软件中变为可执行程序并被执行的。</p>
@@ -481,7 +486,6 @@
     <summary type="html">
     
       &lt;p&gt;听说想写代码挣钱的话，买书的钱加起来就是第一个月工资。终于没有嫌书贵，下手买了《深入理解计算机系统（第3版）》。为了保证学习效果，我自己在这里开一个小栏目做重点记录和习题解答。我对 C 语言相对熟练，于是决定啃一下这块硬骨头，希望能有毅力一直写下去。&lt;/p&gt;
-&lt;p&gt;先把 K
     
     </summary>
     
@@ -703,9 +707,9 @@
     </summary>
     
     
-      <category term="thoughts" scheme="http://jeldorpku.github.io/tags/thoughts/"/>
-    
       <category term="hexo" scheme="http://jeldorpku.github.io/tags/hexo/"/>
+    
+      <category term="thoughts" scheme="http://jeldorpku.github.io/tags/thoughts/"/>
     
   </entry>
   
