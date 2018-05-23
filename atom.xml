@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://jeldorpku.github.io/"/>
-  <updated>2018-05-14T01:40:21.000Z</updated>
+  <updated>2018-05-23T04:43:23.886Z</updated>
   <id>http://jeldorpku.github.io/</id>
   
   <author>
@@ -14,6 +14,52 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>三个人的决斗</title>
+    <link href="http://jeldorpku.github.io/2018/05/23/Duels/"/>
+    <id>http://jeldorpku.github.io/2018/05/23/Duels/</id>
+    <published>2018-05-23T04:43:23.000Z</published>
+    <updated>2018-05-23T04:43:23.886Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote>
+<p>三个小伙子同时爱上了一 个姑娘，为了决定他们谁能娶这个姑娘，他们决定用手枪进行一次决斗。小李的命中率是30％，小黄比他好些，命中率是50％，最出色的枪手是小林，他从不失误，命中率是100％。由于这个显而易见的事实，为公平起见，他们决定按这样的顺序：小李先开枪，小黄第二，小林最后。然后这样循环，直到他们只剩下一个人。那么这三个人中谁活下来的机会最大呢？他们都应该采取什么样的策略？</p>
+</blockquote>
+<a id="more"></a>
+<p>简单起见我们先考虑两个人的情况，一共有6种，排在前面的人先开枪：</p>
+<ol>
+<li><p>李 vs 林：小李有30%几率先开枪打死小林取胜，否则被小林打死；小李胜率30%，小林胜率70%。</p>
+</li>
+<li><p>黄 vs 林：小黄有50%几率先开枪打死小林取胜，否则被小林打死；小黄胜率50%，小林胜率50%。</p>
+</li>
+<li><p>林 vs 李/黄：小林100%取胜。</p>
+</li>
+<li><p>李 vs 黄 / 黄 vs 李：设 $p$ 为小李先开枪取胜的概率，$q$ 为小黄先开枪取胜的概率，则有方程组：<br>$$<br>\begin{cases}<br>p = 0.3 \times 1+ 0.7 \times(1-q) \<br>q = 0.5 \times 1 + 0.5 \times (1 - p)<br>\end{cases}<br>$$<br>解得<br>$$<br>\begin{cases}<br>p = \frac{6}{13}\<br>q = \frac{10}{13}<br>\end{cases}<br>$$<br>因此，小李先开枪时，小李胜率 6/13，小黄胜率 7/13；小黄先开枪时，小李胜率 3/13，小黄胜率 10/13。</p>
+</li>
+</ol>
+<p>下面我们以小李的视角来开始这个游戏。小李打第一枪时，有开枪和不开枪两种选择。如果开枪，目标一定是小林，否则一不小心把小黄打死自己就死定了。对小林而言，如果他有机会开枪，一定会先打小黄，因为小黄打得更准。所以最多三枪之后，场上的形势一定会变成我们刚刚分析过的两个人的局面。</p>
+<p>考虑小李开枪打小林。若命中（概率0.3），则变成小黄先开枪对阵小李，小李胜率 3/13；若未命中（概率0.7），则再对小黄分情况讨论。小黄的目标也一定是小林，道理和原来一样。只要小黄没有把小林打死，他自己就死定了，所以他不能放空枪，必须出手。因此若小黄命中小林（概率0.5），局面变成小李先开枪对阵小黄，小李胜率 6/13；否则小林打死小黄，变成小李先开枪对阵小林，小李胜率0.3。因此小李若第一枪打了小林，则其最终获胜的概率为<br>$$<br>p=0.3\times \frac{3}{13} + 0.7\times(0.5 \times \frac{6}{13} + 0.5 \times 0.3) \approx 33.58\%<br>$$<br>考虑小李第一枪放空，则小李的胜率和第一枪没命中时是一样的。此时<br>$$<br>p=0.5 \times \frac{6}{13} + 0.5 \times 0.3\approx 38.08\%<br>$$<br>因此对小李而言，第一枪放空枪是最佳选择。</p>
+<p>在这个前提下，小黄必然是有机会开枪的。而且他必须在第一枪打死小林才有机会获胜。他打死小林之后（概率0.5），局面变成小李先开枪对阵小黄，小黄的胜率是 7/13。于是小黄的总胜率是<br>$$<br>p=0.5\times\frac{7}{13}\approx 26.92\%<br>$$<br>小林的胜率用 1 减掉小李和小黄的胜率即可。也可以仔细算一下：考虑小黄没有打中他（概率0.5），他打死小黄，随后只要小李也没有打中他，他就稳赢。所以其实就是小黄和小李同时失手的概率，即<br>$$<br>p=(1-0.5)(1-0.3)=35\%<br>$$<br>于是这里有意思的事情就出现了，小李作为命中率最差的一个人，只要第一枪放空，他就可以有全场最高的胜率。</p>
+<hr>
+<p>如果小李第一枪不允许放空呢？那么局面对小黄来说就完全不一样了。如果小李打中了小林（概率0.3），小黄的胜率将会是10/13；而如果没有（概率0.7），他依然可能打中小林（概率0.5）之后战胜小李（概率7/13）获胜，这一概率是<br>$$<br>p=0.3\times\frac{10}{13}+0.7\times 0.5\times \frac{7}{13}\approx 41.92\%<br>$$<br>而小林此时就需要再比小李放空枪时多扛住小李一枪，小林获胜的概率就是<br>$$<br>p=(1-0.3)^2(1-0.5)=24.5\%<br>$$</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;三个小伙子同时爱上了一 个姑娘，为了决定他们谁能娶这个姑娘，他们决定用手枪进行一次决斗。小李的命中率是30％，小黄比他好些，命中率是50％，最出色的枪手是小林，他从不失误，命中率是100％。由于这个显而易见的事实，为公平起见，他们决定按这样的顺序：小李先开枪，小黄第二，小林最后。然后这样循环，直到他们只剩下一个人。那么这三个人中谁活下来的机会最大呢？他们都应该采取什么样的策略？&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="数学" scheme="http://jeldorpku.github.io/categories/%E6%95%B0%E5%AD%A6/"/>
+    
+    
+      <category term="概率论" scheme="http://jeldorpku.github.io/tags/%E6%A6%82%E7%8E%87%E8%AE%BA/"/>
+    
+      <category term="趣题" scheme="http://jeldorpku.github.io/tags/%E8%B6%A3%E9%A2%98/"/>
+    
+  </entry>
   
   <entry>
     <title>tidyverse工具链 (2)：数据操作</title>
@@ -534,9 +580,9 @@
     
       <category term="thoughts" scheme="http://jeldorpku.github.io/tags/thoughts/"/>
     
-      <category term="Beijing" scheme="http://jeldorpku.github.io/tags/Beijing/"/>
-    
       <category term="articles" scheme="http://jeldorpku.github.io/tags/articles/"/>
+    
+      <category term="Beijing" scheme="http://jeldorpku.github.io/tags/Beijing/"/>
     
   </entry>
   
@@ -1064,11 +1110,11 @@
     
       <category term="tianyi" scheme="http://jeldorpku.github.io/tags/tianyi/"/>
     
+      <category term="Beijing" scheme="http://jeldorpku.github.io/tags/Beijing/"/>
+    
       <category term="travel" scheme="http://jeldorpku.github.io/tags/travel/"/>
     
       <category term="train" scheme="http://jeldorpku.github.io/tags/train/"/>
-    
-      <category term="Beijing" scheme="http://jeldorpku.github.io/tags/Beijing/"/>
     
   </entry>
   
