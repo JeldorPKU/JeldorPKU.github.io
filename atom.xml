@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://jeldorpku.github.io/"/>
-  <updated>2018-05-23T04:43:23.886Z</updated>
+  <updated>2018-05-23T04:43:23.000Z</updated>
   <id>http://jeldorpku.github.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://jeldorpku.github.io/2018/05/23/Duels/"/>
     <id>http://jeldorpku.github.io/2018/05/23/Duels/</id>
     <published>2018-05-23T04:43:23.000Z</published>
-    <updated>2018-05-23T04:43:23.886Z</updated>
+    <updated>2018-05-23T04:43:23.000Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
 <p>三个小伙子同时爱上了一 个姑娘，为了决定他们谁能娶这个姑娘，他们决定用手枪进行一次决斗。小李的命中率是30％，小黄比他好些，命中率是50％，最出色的枪手是小林，他从不失误，命中率是100％。由于这个显而易见的事实，为公平起见，他们决定按这样的顺序：小李先开枪，小黄第二，小林最后。然后这样循环，直到他们只剩下一个人。那么这三个人中谁活下来的机会最大呢？他们都应该采取什么样的策略？</p>
@@ -309,7 +309,7 @@
     <link href="http://jeldorpku.github.io/2018/05/14/tidyverse-1/"/>
     <id>http://jeldorpku.github.io/2018/05/14/tidyverse-1/</id>
     <published>2018-05-14T01:40:11.000Z</published>
-    <updated>2018-05-14T01:40:11.088Z</updated>
+    <updated>2018-05-14T01:40:11.000Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
 <p>更新日志：</p>
@@ -541,7 +541,7 @@
     <link href="http://jeldorpku.github.io/2018/05/12/how-long-is-it-since-you-last-wrote-something/"/>
     <id>http://jeldorpku.github.io/2018/05/12/how-long-is-it-since-you-last-wrote-something/</id>
     <published>2018-05-12T06:32:37.000Z</published>
-    <updated>2018-05-12T06:41:00.134Z</updated>
+    <updated>2018-05-12T06:41:00.000Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
 <p>我已经好久没有写过一篇文章了。</p>
@@ -580,9 +580,9 @@
     
       <category term="thoughts" scheme="http://jeldorpku.github.io/tags/thoughts/"/>
     
-      <category term="articles" scheme="http://jeldorpku.github.io/tags/articles/"/>
-    
       <category term="Beijing" scheme="http://jeldorpku.github.io/tags/Beijing/"/>
+    
+      <category term="articles" scheme="http://jeldorpku.github.io/tags/articles/"/>
     
   </entry>
   
@@ -1110,11 +1110,11 @@
     
       <category term="tianyi" scheme="http://jeldorpku.github.io/tags/tianyi/"/>
     
-      <category term="Beijing" scheme="http://jeldorpku.github.io/tags/Beijing/"/>
-    
       <category term="travel" scheme="http://jeldorpku.github.io/tags/travel/"/>
     
       <category term="train" scheme="http://jeldorpku.github.io/tags/train/"/>
+    
+      <category term="Beijing" scheme="http://jeldorpku.github.io/tags/Beijing/"/>
     
   </entry>
   
